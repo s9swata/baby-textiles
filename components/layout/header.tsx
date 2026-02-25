@@ -20,7 +20,7 @@ export function Header() {
             <Diamond className="h-6 w-6" />
           </div>
           <h1 className="text-xl font-bold tracking-tight text-text-main hidden sm:block">
-            Textile Heritage
+            Baby Textiles
           </h1>
         </Link>
 

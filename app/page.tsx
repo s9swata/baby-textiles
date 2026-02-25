@@ -112,7 +112,7 @@ crafted collection of premium Kanjivaram silk
               Every Fabric
             </h2>
             <p className="text-lg text-text-sub">
-              For over three decades, Textile Heritage has been synonymous with
+              For over three decades, Baby Textiles has been synonymous with
               quality and tradition. Our artisans in Kanchipuram and Varanasi
               dedicate weeks to weave a single saree, ensuring every motif
               tells a story of our rich cultural past.

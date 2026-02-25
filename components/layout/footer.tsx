@@ -12,7 +12,7 @@ export function Footer() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
               <Diamond className="h-5 w-5" />
             </div>
-            <span className="text-lg font-bold">Textile Heritage</span>
+            <span className="text-lg font-bold">Baby Textiles</span>
           </div>
           <p className="text-sm leading-relaxed text-text-sub">
             Celebrating the art of Indian weaving. Bringing authentic,
@@ -107,7 +107,7 @@ export function Footer() {
       </div>
 
       <div className="mt-12 border-t border-gray-200 pt-8 text-center text-xs text-text-sub">
-        <p>&copy; 2024 Textile Heritage. All rights reserved.</p>
+        <p>&copy; 2026 Baby Textiles. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -7,21 +7,27 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { products } from "@/lib/data";
+import { products, sareeCategories } from "@/lib/data";
 import { useState } from "react";
 
-const fabrics = [
-  { id: "banarasi", label: "Banarasi Silk", count: 42 },
-  { id: "cotton", label: "Pure Cotton", count: 18, checked: true },
-  { id: "georgette", label: "Georgette", count: 24 },
-  { id: "chiffon", label: "Chiffon", count: 12 },
-];
+interface SareeProduct {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice: number | null;
+  discount: number | null;
+  image: string;
+  colors?: string[];
+  badge: string | null;
+  href: string;
+  category: string;
+}
 
 const priceRanges = [
-  { id: "under50", label: "Under $50" },
-  { id: "50-100", label: "$50 - $100" },
-  { id: "100-200", label: "$100 - $200" },
-  { id: "200plus", label: "$200+" },
+  { id: "under1000", label: "Under ₹1,000" },
+  { id: "1000-2000", label: "₹1,000 - ₹2,000" },
+  { id: "2000-4000", label: "₹2,000 - ₹4,000" },
+  { id: "4000plus", label: "₹4,000+" },
 ];
 
 const colors = [
@@ -37,6 +43,20 @@ const colors = [
 
 export default function SareesPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  const filteredProducts = selectedCategory === "all"
+    ? products.sarees
+    : products.sarees.filter((p: SareeProduct) => 
+        p.category.toLowerCase().replace(" ", "-") === selectedCategory
+      );
+
+  const getCategoryCount = (categoryId: string) => {
+    if (categoryId === "all") return products.sarees.length;
+    return products.sarees.filter((p: SareeProduct) => 
+      p.category.toLowerCase().replace(" ", "-") === categoryId
+    ).length;
+  };
 
   return (
     <div className="w-full max-w-[1440px] mx-auto px-4 md:px-10 py-8">
@@ -82,19 +102,22 @@ export default function SareesPage() {
           </div>
 
           <div className={`space-y-8 ${mobileFiltersOpen ? 'block' : 'hidden lg:block'}`}>
-            {/* Fabric Filter */}
+            {/* Category Filter */}
             <div>
               <h3 className="font-bold text-stone-900 mb-4 flex items-center justify-between">
-                Fabric
+                Category
               </h3>
               <div className="space-y-3">
-                {fabrics.map((fabric) => (
-                  <label key={fabric.id} className="flex items-center gap-3 cursor-pointer group">
-                    <Checkbox defaultChecked={fabric.checked} />
+                {sareeCategories.map((cat) => (
+                  <label key={cat.id} className="flex items-center gap-3 cursor-pointer group">
+                    <Checkbox 
+                      checked={selectedCategory === cat.id}
+                      onCheckedChange={() => setSelectedCategory(cat.id)}
+                    />
                     <span className="text-stone-600 group-hover:text-primary transition-colors">
-                      {fabric.label}
+                      {cat.label}
                     </span>
-                    <span className="ml-auto text-xs text-stone-400">({fabric.count})</span>
+                    <span className="ml-auto text-xs text-stone-400">({getCategoryCount(cat.id)})</span>
                   </label>
                 ))}
               </div>
@@ -143,21 +166,24 @@ export default function SareesPage() {
         {/* Product Grid */}
         <div className="flex-grow">
           {/* Active Filters Bar */}
-          <div className="flex flex-wrap gap-2 mb-6">
-            <Badge variant="secondary" className="gap-1">
-              Pink <X className="h-3 w-3" />
-            </Badge>
-            <Badge variant="secondary" className="gap-1">
-              Pure Cotton <X className="h-3 w-3" />
-            </Badge>
-            <button className="text-sm text-stone-500 hover:text-primary underline ml-2">
-              Clear all
-            </button>
-          </div>
+          {selectedCategory !== "all" && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              <Badge variant="secondary" className="gap-1">
+                {sareeCategories.find(c => c.id === selectedCategory)?.label}
+                <X className="h-3 w-3" onClick={() => setSelectedCategory("all")} />
+              </Badge>
+              <button 
+                className="text-sm text-stone-500 hover:text-primary underline ml-2"
+                onClick={() => setSelectedCategory("all")}
+              >
+                Clear all
+              </button>
+            </div>
+          )}
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
-            {products.sarees.map((product) => (
+            {filteredProducts.map((product: SareeProduct) => (
               <div key={product.id} className="group flex flex-col">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-stone-100 mb-4">
                   <Image
@@ -206,11 +232,11 @@ export default function SareesPage() {
                     {product.name}
                   </h3>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-stone-900">${product.price.toFixed(2)}</span>
+                    <span className="font-bold text-stone-900">₹{product.price.toLocaleString("en-IN")}</span>
                     {product.originalPrice && (
                       <>
                         <span className="text-stone-400 text-sm line-through">
-                          ${product.originalPrice.toFixed(2)}
+                          ₹{product.originalPrice.toLocaleString("en-IN")}
                         </span>
                         {product.discount && (
                           <span className="text-green-600 text-xs font-bold">
@@ -236,28 +262,34 @@ export default function SareesPage() {
             ))}
           </div>
 
+          {/* Empty State */}
+          {filteredProducts.length === 0 && (
+            <div className="text-center py-12">
+              <p className="text-stone-500">No products found in this category.</p>
+              <Button 
+                variant="outline" 
+                className="mt-4"
+                onClick={() => setSelectedCategory("all")}
+              >
+                View All Sarees
+              </Button>
+            </div>
+          )}
+
           {/* Pagination */}
-          <div className="mt-12 flex justify-center items-center gap-4">
-            <Button variant="outline" size="icon" disabled>
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button variant="default" size="icon">
-              1
-            </Button>
-            <Button variant="outline" size="icon">
-              2
-            </Button>
-            <Button variant="outline" size="icon">
-              3
-            </Button>
-            <span className="text-stone-400">...</span>
-            <Button variant="outline" size="icon">
-              12
-            </Button>
-            <Button variant="outline" size="icon">
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
+          {filteredProducts.length > 0 && (
+            <div className="mt-12 flex justify-center items-center gap-4">
+              <Button variant="outline" size="icon" disabled>
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button variant="default" size="icon">
+                1
+              </Button>
+              <Button variant="outline" size="icon">
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

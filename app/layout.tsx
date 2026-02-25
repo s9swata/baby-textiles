@@ -11,9 +11,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Textile Heritage - Premium Indian Handlooms",
+  title: "Baby Textiles - Premium Indian Handlooms",
   description:
-    "Explore our handcrafted collection of premium Kanjivaram silk sarees and traditional dhotis woven with heritage.",
+    "Explore our handcrafted collection of premium silk sarees and traditional dhotis woven with heritage.",
 };
 
 export default function RootLayout({
