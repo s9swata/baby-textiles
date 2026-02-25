@@ -72,8 +72,9 @@ export default function ProductDetailPage() {
             <Image
               alt="Royal Blue Banarasi Silk Saree"
               src={productImages[selectedImage]}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
+              width={600}
+              height={750}
+              className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
               unoptimized
             />
             <Button
@@ -100,8 +101,9 @@ export default function ProductDetailPage() {
                 <Image
                   alt={`View ${i + 1}`}
                   src={img}
-                  fill
-                  className="object-cover"
+                  width={150}
+                  height={150}
+                  className="object-cover w-full h-full"
                   unoptimized
                 />
               </button>
