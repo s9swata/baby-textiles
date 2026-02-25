@@ -54,20 +54,20 @@ export function ProductCard({
             </Badge>
           </div>
         )}
-        <div className="absolute bottom-4 left-0 right-0 px-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex gap-2">
+        <div className="absolute bottom-4 left-0 right-0 px-4 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300 flex gap-2">
           <Button
             size="lg"
-            className="flex-1 bg-white hover:bg-stone-50 text-stone-900 shadow-lg"
+            className="flex-1 bg-white hover:bg-stone-50 text-stone-900 shadow-lg h-14 text-base"
           >
-            <ShoppingCart className="w-4 h-4" />
+            <ShoppingCart className="w-5 h-5" />
             Add to Cart
           </Button>
           <Button
             size="icon"
             variant="white"
-            className="bg-white hover:bg-stone-50 text-stone-900 shadow-lg"
+            className="bg-white hover:bg-stone-50 text-stone-900 shadow-lg h-14 w-14"
           >
-            <Heart className="w-4 h-4" />
+            <Heart className="w-5 h-5" />
           </Button>
         </div>
       </div>

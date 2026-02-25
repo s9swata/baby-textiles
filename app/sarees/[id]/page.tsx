@@ -225,11 +225,11 @@ export default function ProductDetailPage() {
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
-            <Button size="xl" className="flex-1 gap-2">
+            <Button size="xl" className="flex-1 gap-2 h-14">
               <ShoppingBag className="h-5 w-5" />
               Add to Cart
             </Button>
-            <Button size="xl" variant="secondary" className="flex-1">
+            <Button size="xl" variant="secondary" className="flex-1 h-14">
               Buy Now
             </Button>
           </div>
