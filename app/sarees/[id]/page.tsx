@@ -259,7 +259,7 @@ export default function ProductDetailPage() {
       </div>
 
       {/* Product Care & Details Section */}
-      <div className="bg-white py-16 mt-12">
+      <div className="bg-white py-16 mt-12 max-w-7xl mx-auto px-4 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Product Care */}
           <div className="space-y-8">
