@@ -1,23 +1,23 @@
 {
-  "name": "@baby-textiles/ui",
+  "name": "@baby-textiles/schemas",
   "version": "0.1.0",
   "private": true,
   "main": "./index.ts",
   "types": "./index.ts",
   "exports": {
     ".": "./index.ts",
-    "./components/*": "./components/*.tsx"
+    "./enums": "./src/enums.ts",
+    "./order": "./src/order.ts",
+    "./api": "./src/api.ts",
+    "./webhook": "./src/webhook.ts"
   },
   "scripts": {
     "lint": "eslint ."
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.5.0"
+    "zod": "^3.23.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
     "typescript": "^5"
   }
 }
