@@ -18,9 +18,9 @@ export default function TermsPage() {
           </h2>
           <p>
             Baby Textiles (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;)
-            is a proprietorship business engaged in the sale of handcrafted
-            Indian textiles, including silk sarees, bed linen, and dhotis. Our
-            registered place of business is in Tamil Nadu, India.
+            is a proprietorship business owned by Pradim Kumar Sah, engaged in
+            the sale of handcrafted Indian textiles, including silk sarees, bed
+            linen, and dhotis. Our business was established in 2014.
           </p>
         </section>
 
@@ -269,10 +269,11 @@ export default function TermsPage() {
           <div className="mt-2 rounded-lg bg-neutral-light p-4">
             <p>
               <strong>Baby Textiles</strong>
+              <br />
+              Prop. Pradim Kumar Sah
             </p>
-            <p>Bihar, India</p>
             <p>Email: amriteshanshu1234@gmail.com</p>
-            <p>Phone: +91 7283015687</p>
+            <p>Phone: +91 8603538436</p>
           </div>
         </section>
 

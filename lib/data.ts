@@ -461,26 +461,8 @@ export const categories = [
   },
 ];
 
-export const testimonials = [
-  {
-    id: 1,
-    name: "Priya Sharma",
-    rating: 5,
-    date: "2 days ago",
-    title: "Absolutely stunning!",
-    content: "The saree is exactly as shown in the picture. The quality is excellent and the zari work is very neat. Got so many compliments at my cousin's wedding.",
-    avatar: null,
-  },
-  {
-    id: 2,
-    name: "Anjali D.",
-    rating: 4,
-    date: "1 week ago",
-    title: "Good quality but heavy",
-    content: "The quality is top-notch, pure silk for sure. However, it's a bit heavier than I expected because of the heavy zari work. Perfect for grand functions.",
-    avatar: null,
-  },
-];
+// Reviews will be added after we start selling
+export const testimonials: never[] = [];
 
 export const productSpecs = {
   material: "Pure Katan Silk",

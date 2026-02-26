@@ -18,10 +18,11 @@ export default function PrivacyPage() {
           </h2>
           <p>
             Baby Textiles (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;)
-            is committed to protecting your privacy. This Privacy Policy
-            explains how we collect, use, disclose, and safeguard your
-            information when you visit our website (babytextiles.com) and make
-            purchases from our online store.
+            is a proprietorship business owned by Pradim Kumar Sah, committed to
+            protecting your privacy. This Privacy Policy explains how we
+            collect, use, disclose, and safeguard your information when you
+            visit our website (babytextiles.com) and make purchases from our
+            online store. Our business was established in 2014.
           </p>
           <p className="mt-2">
             By accessing or using our website, you consent to the practices
@@ -197,7 +198,7 @@ export default function PrivacyPage() {
           </ul>
           <p className="mt-2">
             To exercise these rights, please contact us at
-            contact@babytextiles.com.
+            amriteshanshu1234@gmail.com
           </p>
         </section>
 
@@ -279,10 +280,11 @@ export default function PrivacyPage() {
           <div className="mt-2 rounded-lg bg-neutral-light p-4">
             <p>
               <strong>Baby Textiles</strong>
+              <br />
+              Prop. Pradim Kumar Sah
             </p>
-            <p>Bihar, India</p>
             <p>Email: amriteshanshu1234@gmail.com</p>
-            <p>Phone: +91 7283015687</p>
+            <p>Phone: +91 8603538436</p>
           </div>
         </section>
 

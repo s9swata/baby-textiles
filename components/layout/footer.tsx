@@ -56,8 +56,8 @@ export function Footer() {
           <h4 className="mb-4 font-bold text-primary">Company</h4>
           <ul className="flex flex-col gap-2 text-sm text-text-sub">
             <li>
-              <Link href="#" className="hover:text-primary transition-colors">
-                Our Story
+              <Link href="/about" className="hover:text-primary transition-colors">
+                About Us
               </Link>
             </li>
             <li>
@@ -71,8 +71,13 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-primary transition-colors">
+              <Link href="/contact" className="hover:text-primary transition-colors">
                 Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/refund" className="hover:text-primary transition-colors">
+                Refund & Cancellation
               </Link>
             </li>
             <li>
