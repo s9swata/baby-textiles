@@ -1,5 +1,5 @@
 import type { Context, Next } from 'hono';
-import { verifyToken } from '@clerk/backend';
+import { verifyClerkToken } from '../lib/clerk';
 
 type Bindings = {
   Variables: {
@@ -17,11 +17,8 @@ export async function clerkAuth(c: Context<Bindings>, next: Next) {
   const token = authHeader.replace('Bearer ', '');
 
   try {
-    const claims = await verifyToken(token, {
-      secretKey: process.env.CLERK_SECRET_KEY,
-    });
-
-    c.set('clerkUserId', claims.sub);
+    const clerkUserId = await verifyClerkToken(token);
+    c.set('clerkUserId', clerkUserId);
     await next();
   } catch (error) {
     console.error('Clerk token verification failed:', error);
