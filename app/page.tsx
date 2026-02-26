@@ -24,14 +24,14 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           <div className="relative z-10 flex min-h-[500px] flex-col justify-center px-6 py-12 md:px-12 lg:w-3/5">
             <span className="mb-4 inline-block w-fit rounded-full bg-primary/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-              Premium Collection 2024
+              Premium Collection 2026
             </span>
             <h2 className="mb-4 text-4xl font-black leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
               Timeless Elegance in Every Thread
             </h2>
             <p className="mb-8 text-lg font-medium text-gray-200              Explore our hand md:text-xl">
-crafted collection of premium Kanjivaram silk
-              sarees and traditional dhotis woven with heritage.
+              crafted collection of premium Kanjivaram silk sarees woven with
+              heritage.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/sarees">
@@ -57,7 +57,9 @@ crafted collection of premium Kanjivaram silk
             <h2 className="text-2xl font-bold text-text-main md:text-3xl">
               Shop by Category
             </h2>
-            <p className="mt-2 text-text-sub">Curated collections for every occasion</p>
+            <p className="mt-2 text-text-sub">
+              Curated collections for every occasion
+            </p>
           </div>
           <Link
             href="#"
@@ -87,7 +89,9 @@ crafted collection of premium Kanjivaram silk
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
               <div className="absolute bottom-0 left-0 p-6">
-                <h3 className="text-xl font-bold text-white">{category.name}</h3>
+                <h3 className="text-xl font-bold text-white">
+                  {category.name}
+                </h3>
                 <p className="mt-1 text-sm text-gray-200 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
                   {category.description}
                 </p>
@@ -114,8 +118,8 @@ crafted collection of premium Kanjivaram silk
             <p className="text-lg text-text-sub">
               For over three decades, Baby Textiles has been synonymous with
               quality and tradition. Our artisans in Kanchipuram and Varanasi
-              dedicate weeks to weave a single saree, ensuring every motif
-              tells a story of our rich cultural past.
+              dedicate weeks to weave a single saree, ensuring every motif tells
+              a story of our rich cultural past.
             </p>
             <div className="flex items-center gap-8 pt-4">
               <div className="flex flex-col gap-1">
@@ -134,7 +138,9 @@ crafted collection of premium Kanjivaram silk
               <div className="h-10 w-px bg-gray-300" />
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-black text-primary">100%</span>
-                <span className="text-sm font-medium text-text-sub">Handloom</span>
+                <span className="text-sm font-medium text-text-sub">
+                  Handloom
+                </span>
               </div>
             </div>
           </div>

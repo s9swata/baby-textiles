@@ -30,6 +30,15 @@ const priceRanges = [
   { id: "4000plus", label: "₹4,000+" },
 ];
 
+type SortOption = "featured" | "price-low" | "price-high" | "newest";
+
+const sortOptions: { value: SortOption; label: string }[] = [
+  { value: "featured", label: "Featured" },
+  { value: "price-low", label: "Price: Low to High" },
+  { value: "price-high", label: "Price: High to Low" },
+  { value: "newest", label: "Newest" },
+];
+
 const colors = [
   { id: "red", color: "#dc2626" },
   { id: "blue", color: "#2563eb" },
@@ -44,12 +53,26 @@ const colors = [
 export default function SareesPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState<SortOption>("featured");
 
   const filteredProducts = selectedCategory === "all"
     ? products.sarees
     : products.sarees.filter((p: SareeProduct) => 
         p.category.toLowerCase().replace(" ", "-") === selectedCategory
       );
+
+  const sortedAndFilteredProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low":
+        return a.price - b.price;
+      case "price-high":
+        return b.price - a.price;
+      case "newest":
+        return 0;
+      default:
+        return 0;
+    }
+  });
 
   const getCategoryCount = (categoryId: string) => {
     if (categoryId === "all") return products.sarees.length;
@@ -66,7 +89,7 @@ export default function SareesPage() {
           Home
         </Link>
         <span className="text-stone-300">/</span>
-        <Link href="#" className="text-stone-500 hover:text-primary transition-colors">
+        <Link href="/sarees" className="text-stone-500 hover:text-primary transition-colors">
           Collections
         </Link>
         <span className="text-stone-300">/</span>
@@ -83,10 +106,20 @@ export default function SareesPage() {
         </div>
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-stone-500 hidden md:block">Sort by:</span>
-          <Button variant="outline" className="gap-2">
-            Featured
-            <ChevronRight className="h-4 w-4 rotate-90" />
-          </Button>
+          <div className="relative">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as SortOption)}
+              className="appearance-none bg-white border border-stone-300 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-stone-700 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+            >
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400 pointer-events-none rotate-90" />
+          </div>
         </div>
       </div>
 
@@ -183,7 +216,7 @@ export default function SareesPage() {
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
-            {filteredProducts.map((product: SareeProduct) => (
+            {sortedAndFilteredProducts.map((product: SareeProduct) => (
               <div key={product.id} className="group flex flex-col">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-stone-100 mb-4">
                   <Image

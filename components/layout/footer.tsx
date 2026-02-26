@@ -39,14 +39,7 @@ export function Footer() {
                 Silk Sarees
               </Link>
             </li>
-            <li>
-              <Link
-                href="/dhotis"
-                className="hover:text-primary transition-colors"
-              >
-                Cotton Dhotis
-              </Link>
-            </li>
+
             <li>
               <Link
                 href="/home-linen"
@@ -55,11 +48,7 @@ export function Footer() {
                 Bed Linen
               </Link>
             </li>
-            <li>
-              <Link href="#" className="hover:text-primary transition-colors">
-                Gift Cards
-              </Link>
-            </li>
+
           </ul>
         </div>
 
@@ -84,6 +73,16 @@ export function Footer() {
             <li>
               <Link href="#" className="hover:text-primary transition-colors">
                 Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link href="/terms" className="hover:text-primary transition-colors">
+                Terms & Conditions
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className="hover:text-primary transition-colors">
+                Privacy Policy
               </Link>
             </li>
           </ul>

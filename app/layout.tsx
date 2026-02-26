@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ClerkWrapper } from "@/components/providers/clerk-wrapper";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -13,7 +14,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Baby Textiles - Premium Indian Handlooms",
   description:
-    "Explore our handcrafted collection of premium silk sarees and traditional dhotis woven with heritage.",
+    "Explore our handcrafted collection of premium silk sarees woven with heritage.",
 };
 
 export default function RootLayout({
@@ -22,14 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${manrope.variable} antialiased`}>
-        <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-      </body>
-    </html>
+    <ClerkWrapper>
+      <html lang="en">
+        <body className={`${manrope.variable} antialiased`}>
+          <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </body>
+      </html>
+    </ClerkWrapper>
   );
 }

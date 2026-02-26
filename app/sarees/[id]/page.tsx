@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -16,14 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { productSpecs, testimonials } from "@/lib/data";
-
-const productImages = [
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBjrP020l9aGfHVh4syeO_dG1Hx3sqUeuhv8eBhea7-6bq4lUgeKxfWe-TPLjBfIvK4LbY9ez3x3aiiB57VwRrslIYZH4svQYffbss14y9NMMxRrpO87VrPCSDJeNk2G0nPrwsBWZDsZjCGns9uz8KGtoimdiuNWa5LitLQpywB8FVnAxeCh60uhqWzBXukXaemDR9KXQ_JhrLo_fXf1So6UpTAvn1eOzNtCsumhAmkvYkh19ZzRKNq4hoWXukM5FzctXY3eJbHaQ",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBSk7L6ATt_fO2Aly969GekX5cCyzHgCHiMO27ivzFA0lwGaJA_Cs2erdZ9pELKsvR3bTquK7WPfg1LbU_GucUUgO3-hBjO9_tOe258pR2e0i8YPJ4H_JMC1jwGrdo2AXKc7lmtYOW80w14gLjAaM-36bzsylJst-SRx5kwdX9idHCusdPkf9VGbYzC3NHLr5tTZcrOHpvubdElGPaIiUeNqDV5PzIAYGiWvlQAv_kdQkGrC-QbLjNvfph42aFQiHJjBdaMoXQFLw",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuD0_YUEfKLaQsLq_JXjqI0y1vRFfj-cSEPRPhhDJS9JqWwLFde1fOU6MXYphnnw4FYhr_ce7-mHRKbXHJZcbYBduvT1PyvScCRF6g1oa0I138V9tuajNRb1qwthLb9nfervn2yXixF7QxrcfoksH9UgzMxubeaD8FFfsVJAohnK4-BZ8GHTCO-gfIJ1OZeJdatAJLKiQ7uYCv-lIogE6r4_fMFvDdPd63qrRje1peqCS9c511vxfFNuYypXO_WIBzRYXHRHaHjrpA",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuAJSsczor4BbU4xuF775yQpaaJRQqSf4xmcysNf1skYbOCErL7uz7ucujZt85881X2wAxPZ1AHrfhYnPckX8WnQjaYibIEuzicyXR7O9f5HP2QVkTQark4_v8fLHT3I_DG5akRwYtE5kw91z_z2blswBEmK2kx8ACIln_xKDCtq2WDnKyEhyr6g2mTDWxT68Bu-2wHAKjkZcdl_Ute8ZhsEGXFRFMsVMWAd2hQSLpkrwC3MhJECovNnRkgL03PGgbXyCaEcIwur6A",
-];
+import { getSareeById, SareeProduct } from "@/lib/data";
 
 const careInstructions = [
   {
@@ -43,10 +36,61 @@ const careInstructions = [
   },
 ];
 
-export default function ProductDetailPage() {
+interface ProductDetailPageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default function ProductDetailPage({ params }: ProductDetailPageProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [blouseStitching, setBlouseStitching] = useState("unstitched");
+  const [product, setProduct] = useState<SareeProduct | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      const resolvedParams = await params;
+      const saree = getSareeById(resolvedParams.id);
+      setProduct(saree ?? null);
+      setIsLoading(false);
+    };
+    loadProduct();
+  }, [params]);
+
+  if (isLoading) {
+    return (
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-10 pb-12 flex items-center justify-center min-h-[50vh]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-stone-500">Loading product...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!product) {
+    return (
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-10 pb-12">
+        <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
+          <h2 className="text-2xl font-bold text-stone-900">Product Not Found</h2>
+          <p className="text-stone-500">The product you're looking for doesn't exist.</p>
+          <Link href="/sarees">
+            <Button>Browse Sarees</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const currentProduct: SareeProduct = product;
+
+  const productImages = currentProduct.images && currentProduct.images.length > 0 
+    ? currentProduct.images 
+    : [currentProduct.image];
+
+  const discount = currentProduct.originalPrice 
+    ? Math.round(((currentProduct.originalPrice - currentProduct.price) / currentProduct.originalPrice) * 100)
+    : null;
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 md:px-10 pb-12">
@@ -60,7 +104,7 @@ export default function ProductDetailPage() {
           Sarees
         </Link>
         <span className="text-stone-500 font-medium">/</span>
-        <span className="text-stone-900 font-bold">Banarasi Silk</span>
+        <span className="text-stone-900 font-bold">{currentProduct.name}</span>
       </div>
 
       {/* Main Product Section */}
@@ -70,7 +114,7 @@ export default function ProductDetailPage() {
           {/* Main Image */}
           <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-stone-200 relative group cursor-zoom-in">
             <Image
-              alt="Royal Blue Banarasi Silk Saree"
+              alt={currentProduct.name}
               src={productImages[selectedImage]}
               width={600}
               height={750}
@@ -115,13 +159,17 @@ export default function ProductDetailPage() {
         <div className="flex flex-col gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Badge variant="bestseller">Best Seller</Badge>
+              {currentProduct.badge && (
+                <Badge variant={currentProduct.badge === "Best Seller" ? "bestseller" : currentProduct.badge === "New" ? "new" : "default"}>
+                  {currentProduct.badge}
+                </Badge>
+              )}
               <span className="text-stone-500 text-xs font-medium uppercase tracking-wider">
-                SKU: BNR-SILK-004
+                SKU: {currentProduct.sku}
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold text-stone-900 leading-tight mb-2">
-              Royal Blue Banarasi Silk Saree with Gold Zari
+              {currentProduct.name}
             </h1>
             <div className="flex items-center gap-4">
               <div className="flex items-center text-primary">
@@ -138,32 +186,39 @@ export default function ProductDetailPage() {
           </div>
 
           {/* Pricing */}
-          <div className="flex items-end gap-3 pb-6 border-b border-stone-200">
-            <span className="text-4xl font-bold text-stone-900">₹12,499</span>
-            <span className="text-xl text-stone-500 line-through mb-1.5">₹18,999</span>
-            <span className="text-primary font-bold mb-1.5 ml-1">34% OFF</span>
+          <div className="flex items-end gap-3 pb-6 border-b border-b-stone-200">
+            <span className="text-4xl font-bold text-stone-900">₹{currentProduct.price.toLocaleString()}</span>
+            {currentProduct.originalPrice != null && (
+              <>
+                <span className="text-xl text-stone-500 line-through mb-1.5">₹{(currentProduct.originalPrice as number).toLocaleString()}</span>
+                {discount != null && (
+                  <span className="text-primary font-bold mb-1.5 ml-1">{discount}% OFF</span>
+                )}
+              </>
+            )}
           </div>
 
           {/* Description */}
           <div className="space-y-4">
             <p className="text-stone-700 leading-relaxed">
-              Experience the regal elegance of Banaras with this exquisite Royal Blue
-              saree. Handwoven by master artisans, this saree features intricate gold
-              Zari work inspired by Mughal architecture. The pure silk fabric drapes
-              effortlessly, making it perfect for weddings and festive occasions.
+              {currentProduct.description}
             </p>
             <ul className="space-y-2">
               <li className="flex items-center gap-3 text-sm text-stone-700">
                 <CheckCircle className="h-4 w-4 text-primary" />
-                <span>100% Pure Banarasi Silk</span>
+                <span>100% {currentProduct.material}</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-stone-700">
                 <CheckCircle className="h-4 w-4 text-primary" />
-                <span>Handwoven Gold Zari Border</span>
+                <span>Size: {currentProduct.size}</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-stone-700">
                 <CheckCircle className="h-4 w-4 text-primary" />
-                <span>Includes Unstitched Blouse Piece (80cm)</span>
+                <span>{currentProduct.blousePiece}</span>
+              </li>
+              <li className="flex items-center gap-3 text-sm text-stone-700">
+                <CheckCircle className="h-4 w-4 text-primary" />
+                <span>Color: {currentProduct.colorName}</span>
               </li>
             </ul>
           </div>
@@ -266,29 +321,37 @@ export default function ProductDetailPage() {
             <div>
               <h3 className="text-2xl font-bold text-stone-900 mb-4">Product Care</h3>
               <div className="grid grid-cols-1 gap-4">
-                {careInstructions.map((item, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 p-4 bg-stone-50 rounded-lg"
-                  >
+                {product.washCare ? (
+                  <div className="flex items-start gap-3 p-4 bg-stone-50 rounded-lg">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
                     <div>
-                      <p className="font-bold text-sm mb-1">{item.title}</p>
-                      <p className="text-xs text-stone-500">{item.description}</p>
+                      <p className="font-bold text-sm mb-1">Wash Care Instructions</p>
+                      <p className="text-xs text-stone-500">{product.washCare}</p>
                     </div>
                   </div>
-                ))}
+                ) : (
+                  careInstructions.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-3 p-4 bg-stone-50 rounded-lg"
+                    >
+                      <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
+                      <div>
+                        <p className="font-bold text-sm mb-1">{item.title}</p>
+                        <p className="text-xs text-stone-500">{item.description}</p>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
 
             {/* Weave Details */}
             <div>
-              <h3 className="text-2xl font-bold text-stone-900 mb-4">Weave Details</h3>
+              <h3 className="text-2xl font-bold text-stone-900 mb-4">Product Details</h3>
               <p className="text-stone-600 mb-4 leading-relaxed">
-                This saree employs the ancient Kadhua technique, where each motif is
-                woven separately by hand without any loose threads at the back. It is
-                a labor-intensive process that results in a cleaner, more durable
-                fabric with raised motifs that feel like embroidery.
+                {product.material} saree perfect for {product.occasion?.toLowerCase() || "casual and formal occasions"}. 
+                This exquisite piece is crafted with attention to detail and quality, ensuring you look elegant for any event.
               </p>
             </div>
           </div>
@@ -297,14 +360,30 @@ export default function ProductDetailPage() {
           <div className="md:col-span-2">
             <h3 className="text-2xl font-bold text-stone-900 mb-4">Specifications</h3>
             <div className="divide-y divide-stone-200 border-y border-stone-200">
-              {Object.entries(productSpecs).map(([key, value]) => (
-                <div key={key} className="flex justify-between py-3">
-                  <span className="text-stone-500 font-medium">
-                    {key.replace(/([A-Z])/g, " $1").replace(/^./, (s) => s.toUpperCase())}
-                  </span>
-                  <span className="text-stone-900 font-semibold text-right">{value}</span>
-                </div>
-              ))}
+              <div className="flex justify-between py-3">
+                <span className="text-stone-500 font-medium">Material</span>
+                <span className="text-stone-900 font-semibold text-right">{product.material}</span>
+              </div>
+              <div className="flex justify-between py-3">
+                <span className="text-stone-500 font-medium">Color</span>
+                <span className="text-stone-900 font-semibold text-right">{product.colorName}</span>
+              </div>
+              <div className="flex justify-between py-3">
+                <span className="text-stone-500 font-medium">Size</span>
+                <span className="text-stone-900 font-semibold text-right">{product.size}</span>
+              </div>
+              <div className="flex justify-between py-3">
+                <span className="text-stone-500 font-medium">Blouse Piece</span>
+                <span className="text-stone-900 font-semibold text-right">{product.blousePiece}</span>
+              </div>
+              <div className="flex justify-between py-3">
+                <span className="text-stone-500 font-medium">Occasion</span>
+                <span className="text-stone-900 font-semibold text-right">{product.occasion}</span>
+              </div>
+              <div className="flex justify-between py-3">
+                <span className="text-stone-500 font-medium">SKU</span>
+                <span className="text-stone-900 font-semibold text-right">{currentProduct.sku}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -368,34 +447,56 @@ export default function ProductDetailPage() {
 
           {/* Review List */}
           <div className="flex-1 space-y-6">
-            {testimonials.map((review) => (
-              <div
-                key={review.id}
-                className="border-b border-stone-200 pb-6 last:border-0"
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-                      {review.name.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="font-bold text-stone-900 text-sm">{review.name}</p>
-                      <div className="flex text-primary text-xs">
-                        {[1, 2, 3, 4, 5].map((i) => (
-                          <Star
-                            key={i}
-                            className={`h-3 w-3 ${i <= review.rating ? "fill-current" : ""}`}
-                          />
-                        ))}
-                      </div>
+            <div
+              className="border-b border-stone-200 pb-6 last:border-0"
+            >
+              <div className="flex justify-between items-start mb-2">
+                <div className="flex items-center gap-3">
+                  <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                    P
+                  </div>
+                  <div>
+                    <p className="font-bold text-stone-900 text-sm">Priya Sharma</p>
+                    <div className="flex text-primary text-xs">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star
+                          key={i}
+                          className={`h-3 w-3 ${i <= 5 ? "fill-current" : ""}`}
+                        />
+                      ))}
                     </div>
                   </div>
-                  <span className="text-xs text-stone-500">{review.date}</span>
                 </div>
-                <h4 className="font-bold text-stone-900 text-sm mb-1">{review.title}</h4>
-                <p className="text-stone-600 text-sm leading-relaxed">{review.content}</p>
+                <span className="text-xs text-stone-500">2 days ago</span>
               </div>
-            ))}
+              <h4 className="font-bold text-stone-900 text-sm mb-1">Absolutely stunning!</h4>
+              <p className="text-stone-600 text-sm leading-relaxed">The saree is exactly as shown in the picture. The quality is excellent and the zari work is very neat. Got so many compliments at my cousin's wedding.</p>
+            </div>
+            <div
+              className="border-b border-stone-200 pb-6 last:border-0"
+            >
+              <div className="flex justify-between items-start mb-2">
+                <div className="flex items-center gap-3">
+                  <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                    A
+                  </div>
+                  <div>
+                    <p className="font-bold text-stone-900 text-sm">Anjali D.</p>
+                    <div className="flex text-primary text-xs">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star
+                          key={i}
+                          className={`h-3 w-3 ${i <= 4 ? "fill-current" : ""}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <span className="text-xs text-stone-500">1 week ago</span>
+              </div>
+              <h4 className="font-bold text-stone-900 text-sm mb-1">Good quality but heavy</h4>
+              <p className="text-stone-600 text-sm leading-relaxed">The quality is top-notch, pure silk for sure. However, it's a bit heavier than I expected because of the heavy zari work. Perfect for grand functions.</p>
+            </div>
             <Button variant="link" className="text-primary font-bold text-sm">
               View all 124 reviews
             </Button>

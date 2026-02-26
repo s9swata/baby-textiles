@@ -76,11 +76,11 @@ export function ProductCard({
           {name}
         </h3>
         <div className="flex items-center gap-2">
-          <span className="font-bold text-stone-900">${price.toFixed(2)}</span>
+          <span className="font-bold text-stone-900">₹{price.toLocaleString()}</span>
           {originalPrice && (
             <>
               <span className="text-stone-400 text-sm line-through">
-                ${originalPrice.toFixed(2)}
+                ₹{originalPrice.toLocaleString()}
               </span>
               {discount && (
                 <span className="text-green-600 text-xs font-bold">

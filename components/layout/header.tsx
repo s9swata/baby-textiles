@@ -5,6 +5,7 @@ import { Search, ShoppingCart, User, Menu, Diamond } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ export function Header() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400" />
             <Input
-              placeholder="Search sarees, dhotis..."
+              placeholder="Search sarees..."
               className="pl-10 bg-neutral-light border-none"
             />
           </div>
@@ -42,12 +43,7 @@ export function Header() {
         >
           Sarees
         </Link>
-        <Link
-          href="/dhotis"
-          className="text-sm font-medium text-text-main hover:text-primary transition-colors"
-        >
-          Dhotis
-        </Link>
+
         <Link
           href="/home-linen"
           className="text-sm font-medium text-text-main hover:text-primary transition-colors"
@@ -70,9 +66,25 @@ export function Header() {
           <ShoppingCart className="h-5 w-5" />
           <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-primary ring-2 ring-white" />
         </Button>
-        <Button variant="ghost" size="icon">
-          <User className="h-5 w-5" />
-        </Button>
+        
+        <SignedOut>
+          <SignInButton mode="modal">
+            <Button variant="ghost" size="icon">
+              <User className="h-5 w-5" />
+            </Button>
+          </SignInButton>
+        </SignedOut>
+        
+        <SignedIn>
+          <UserButton 
+            appearance={{
+              elements: {
+                avatarBox: "h-9 w-9"
+              }
+            }}
+          />
+        </SignedIn>
+        
         <Button
           variant="ghost"
           size="icon"

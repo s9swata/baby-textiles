@@ -1,33 +1,39 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowLeft, Truck, BadgeCheck, RotateCcw } from "lucide-react";
+import { ArrowRight, ArrowLeft, Truck, BadgeCheck, RotateCcw, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "@/components/product-card";
 import { products } from "@/lib/data";
 
-const bedSizes = [
-  {
-    name: "King Size",
-    description: "108&quot; x 108&quot; • Super King Available",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCLe7NhOJdhosOzbag2aiBhRBNKk4TqLgsHsTslWS6ZDqJm_mDHk49ANiX38VpjHqwQpakh8CVFteHcZCZJ1XgZw4mtgtRWtFNurFKaXD0tmuG66WfkzuFIeC_hAvHhxpWNxRFp8e_OG0j9xnD6XDKKZgL4zv6ZvDNqiUxqZs70OUZIrhnXRuZapu2pc5Cxhv9Cgm2YN9YOb_jb2c23H981xTNb3NioK1dyFUkvw4V0COrP8gRBpC3-D9qIZhPgYp9v1-IK4Z4ltg",
-    href: "/home-linen?size=king",
-  },
-  {
-    name: "Queen Size",
-    description: "90&quot; x 100&quot; • Fitted Options",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAGOwiQFf1D2iyge2SGJkkEGT6nXKdRrdiF8yk3PbkEQ6t-a_fwJ1W9h0ebps6otTGAVCE19LMGVxVoA8h7gsm76seKv_bwHIq6kOU1dRu4XOxVR2J5tKCZksnoOpDppesvGi3kQjkNeAUymxDgcTRUtw_3maDFKSv_vWip2R2Woe0w1NYL3FwrlFfBAWXb5A4aDZO6DEn_GeIeVynkh1C_GKaA3laTe73pAOftsZr15Uk90b9cqVl97xOJiKhTC6lNe_cUaijDng",
-    href: "/home-linen?size=queen",
-  },
-  {
-    name: "Single Bedsheets",
-    description: "60&quot; x 90&quot; • Kids Collection",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDLJhz17Qma1km9TpXrzTlNYei4nEsqj6eYjJA755lqE5M8jfEIi74aiKLfZcPH7z5vuPzOa3b58E-o7gpUa4Wny-mmP_DAX3jMX8vsG_cXNX_zJ9VbUi2Q1j9DC4T_1XhgMGDL6d6MOsW9EkuG2-mK_SlOnzUy_jwk2l2njgJtjTnVA341Cv0_Agb5Tossjgms-KpFDYUqKWRSL1qlXUohjv6_eqo8_pkjcu-X7Xp_Gze8UF1nVRfyui2-lq0OlK7SA2cdrer6xA",
-    href: "/home-linen?size=single",
-  },
+type SortOption = "featured" | "price-low" | "price-high" | "newest";
+
+const sortOptions: { value: SortOption; label: string }[] = [
+  { value: "featured", label: "Featured" },
+  { value: "price-low", label: "Price: Low to High" },
+  { value: "price-high", label: "Price: High to Low" },
+  { value: "newest", label: "Newest" },
 ];
 
 export default function HomeLinenPage() {
+  const [sortBy, setSortBy] = useState<SortOption>("featured");
+
+  const sortedProducts = [...products.bedLinen].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low":
+        return a.price - b.price;
+      case "price-high":
+        return b.price - a.price;
+      case "newest":
+        return 0;
+      default:
+        return 0;
+    }
+  });
+
   return (
     <div className="w-full max-w-[1440px] mx-auto px-4 md:px-10 py-6 flex flex-col gap-8">
       {/* Breadcrumbs */}
@@ -36,11 +42,9 @@ export default function HomeLinenPage() {
           Home
         </Link>
         <ChevronRightIcon className="h-4 w-4 text-stone-400" />
-        <Link href="#" className="text-stone-500 hover:text-primary transition-colors">
-          Collections
+        <Link href="/home-linen" className="text-stone-500 hover:text-primary transition-colors">
+          Home Linen
         </Link>
-        <ChevronRightIcon className="h-4 w-4 text-stone-400" />
-        <span className="text-stone-900 font-semibold">Home Linen</span>
       </div>
 
       {/* Hero Section */}
@@ -72,77 +76,35 @@ export default function HomeLinenPage() {
                 <ArrowRight className="h-5 w-5" />
               </Button>
             </Link>
-            <Button size="xl" variant="white">
-              View Lookbook
-            </Button>
           </div>
-        </div>
-      </div>
-
-      {/* Categories Grid */}
-      <div className="flex flex-col gap-6 py-8">
-        <div className="flex items-end justify-between px-2">
-          <div>
-            <h2 className="text-stone-900 text-3xl font-bold tracking-tight">
-              Shop by Size
-            </h2>
-            <p className="text-stone-500 mt-2">Find the perfect fit for your mattress</p>
-          </div>
-          <Link
-            href="#"
-            className="hidden md:flex items-center gap-1 text-primary font-bold hover:underline"
-          >
-            View Size Guide <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {bedSizes.map((size) => (
-            <Link
-              key={size.name}
-              href={size.href}
-              className="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-xl bg-gray-100"
-            >
-              <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105">
-                <Image
-                  alt={size.name}
-                  src={size.image}
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full">
-                <h3 className="text-white text-2xl font-bold mb-2">{size.name}</h3>
-                <div className="flex items-center justify-between">
-                  <p className="text-gray-200 text-sm font-medium">{size.description}</p>
-                  <span className="size-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight className="h-4 w-4" />
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
         </div>
       </div>
 
       {/* Featured Products */}
       <div id="products" className="py-12 border-t border-stone-200">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-stone-900 text-2xl font-bold">Best Sellers</h2>
-          <div className="flex gap-2">
-            <Button variant="outline" size="icon">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-            <Button size="icon">
-              <ArrowRight className="h-4 w-4" />
-            </Button>
+          <h2 className="text-stone-900 text-2xl font-bold">Our Products</h2>
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-stone-500 hidden md:block">Sort by:</span>
+            <div className="relative">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as SortOption)}
+                className="appearance-none bg-white border border-stone-300 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-stone-700 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+              >
+                {sortOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400 pointer-events-none" />
+            </div>
           </div>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {products.bedLinen.map((product) => (
+          {sortedProducts.map((product) => (
             <ProductCard
               key={product.id}
               name={product.name}
