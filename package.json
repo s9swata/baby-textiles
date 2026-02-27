@@ -13,6 +13,7 @@
     "clean": "turbo clean"
   },
   "devDependencies": {
+    "shadcn": "^3.8.5",
     "turbo": "^2.0.0"
   }
 }

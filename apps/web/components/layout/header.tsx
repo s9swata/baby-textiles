@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { useCart } from "@/context/CartContext";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { getItemCount } = useCart();
+  const itemCount = getItemCount();
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between border-b border-neutral-light bg-background/95 backdrop-blur-sm px-6 py-4 lg:px-12">
@@ -62,10 +65,16 @@ export function Header() {
         <Button variant="ghost" size="icon" className="lg:hidden">
           <Search className="h-5 w-5" />
         </Button>
-        <Button variant="ghost" size="icon" className="relative">
-          <ShoppingCart className="h-5 w-5" />
-          <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-primary ring-2 ring-white" />
-        </Button>
+        <Link href="/cart">
+          <Button variant="ghost" size="icon" className="relative" asChild={false}>
+            <ShoppingCart className="h-5 w-5" />
+            {itemCount > 0 && (
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-white flex items-center justify-center">
+                {itemCount > 9 ? "9+" : itemCount}
+              </span>
+            )}
+          </Button>
+        </Link>
         
         <SignedOut>
           <SignInButton mode="modal">

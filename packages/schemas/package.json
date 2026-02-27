@@ -6,8 +6,9 @@
   "types": "./index.ts",
   "exports": {
     ".": "./index.ts",
-    "./enums": "./src/enums.ts",
+    "./product": "./src/product.ts",
     "./order": "./src/order.ts",
+    "./enums": "./src/enums.ts",
     "./api": "./src/api.ts",
     "./webhook": "./src/webhook.ts"
   },

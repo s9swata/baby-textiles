@@ -28,7 +28,7 @@ const STATUS_MESSAGES: Record<string, { subject: string; body: string }> = {
 export async function sendOrderEmail(
   email: string,
   name: string | null,
-  orderId: string,
+  orderNumber: string,
   status: string
 ) {
   const template = STATUS_MESSAGES[status];
@@ -47,7 +47,7 @@ export async function sendOrderEmail(
         <h1 style="color: #8b5cf6;">Baby Textiles</h1>
         <p>Hi ${name || 'Customer'},</p>
         <p>${template.body}</p>
-        <p>Order ID: <strong>${orderId}</strong></p>
+        <p>Order Number: <strong>${orderNumber}</strong></p>
         <p>Thank you for shopping with us!</p>
         <hr />
         <p style="color: #666; font-size: 12px;">

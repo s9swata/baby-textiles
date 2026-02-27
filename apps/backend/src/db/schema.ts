@@ -23,6 +23,7 @@ export const users = pgTable('users', {
 
 export const orders = pgTable('orders', {
   id: uuid('id').primaryKey().defaultRandom(),
+  orderNumber: varchar('order_number', { length: 12 }).notNull().unique(),
   userId: uuid('user_id').notNull().references(() => users.id),
   razorpayPaymentId: text('razorpay_payment_id'),
   razorpayOrderId: text('razorpay_order_id'),

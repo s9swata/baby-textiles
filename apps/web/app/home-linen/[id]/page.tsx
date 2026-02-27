@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   Heart,
@@ -15,16 +16,19 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { getBedLinenById, BedLinenProduct } from "@/lib/data";
+import { getBedLinenById, BedLinenProduct } from "@baby-textiles/schemas";
+import { useCart } from "@/context/CartContext";
 
 interface ProductDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
 export default function ProductDetailPage({ params }: ProductDetailPageProps) {
+  const router = useRouter();
+  const { addToCart } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState<BedLinenProduct | null>(null);
+  const [product, setProduct] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -228,11 +232,29 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
-            <Button size="xl" className="flex-1 gap-2 h-14">
+            <Button 
+              size="xl" 
+              className="flex-1 gap-2 h-14"
+              onClick={() => {
+                if (product) {
+                  addToCart(product, quantity);
+                }
+              }}
+            >
               <ShoppingBag className="h-5 w-5" />
               Add to Cart
             </Button>
-            <Button size="xl" variant="secondary" className="flex-1 h-14">
+            <Button 
+              size="xl" 
+              variant="secondary" 
+              className="flex-1 h-14"
+              onClick={() => {
+                if (product) {
+                  addToCart(product, quantity);
+                  router.push("/checkout?buyNow=true");
+                }
+              }}
+            >
               Buy Now
             </Button>
           </div>

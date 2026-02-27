@@ -1,3 +1,29 @@
+import { z } from 'zod';
+
+export const ProductSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  price: z.number(),
+  originalPrice: z.number().nullable(),
+  discount: z.number().nullable(),
+  image: z.string(),
+  images: z.array(z.string()),
+  colors: z.array(z.string()),
+  colorName: z.string(),
+  badge: z.string().nullable(),
+  href: z.string(),
+  category: z.string(),
+  material: z.string(),
+  size: z.string(),
+  blousePiece: z.string().nullable(),
+  occasion: z.string(),
+  description: z.string(),
+  washCare: z.string().nullable(),
+  sku: z.string(),
+});
+
+export type Product = z.infer<typeof ProductSchema>;
+
 export const products = {
   sarees: [
     {
@@ -7,9 +33,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-1.jpg",
-      images: [
-        "/images/sarees/saree-1.jpg",
-      ],
+      images: ["/images/sarees/saree-1.jpg"],
       colors: ["green", "blue"],
       colorName: "Green with Blue",
       badge: "New",
@@ -30,9 +54,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-2.jpg",
-      images: [
-        "/images/sarees/saree-2.jpg",
-      ],
+      images: ["/images/sarees/saree-2.jpg"],
       colors: ["pink"],
       colorName: "Pink with Green",
       badge: "Best Seller",
@@ -53,9 +75,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-3.jpg",
-      images: [
-        "/images/sarees/saree-3.jpg",
-      ],
+      images: ["/images/sarees/saree-3.jpg"],
       colors: ["orange"],
       colorName: "Orange",
       badge: null,
@@ -76,9 +96,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-4.jpg",
-      images: [
-        "/images/sarees/saree-4.jpg",
-      ],
+      images: ["/images/sarees/saree-4.jpg"],
       colors: ["blue"],
       colorName: "Blue",
       badge: null,
@@ -99,9 +117,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-5.jpg",
-      images: [
-        "/images/sarees/saree-5.jpg",
-      ],
+      images: ["/images/sarees/saree-5.jpg"],
       colors: ["green"],
       colorName: "Green",
       badge: "Premium",
@@ -122,9 +138,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-6.jpg",
-      images: [
-        "/images/sarees/saree-6.jpg",
-      ],
+      images: ["/images/sarees/saree-6.jpg"],
       colors: ["red"],
       colorName: "Red",
       badge: null,
@@ -145,9 +159,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-7.jpg",
-      images: [
-        "/images/sarees/saree-7.jpg",
-      ],
+      images: ["/images/sarees/saree-7.jpg"],
       colors: ["gold"],
       colorName: "Golden",
       badge: "Premium",
@@ -168,9 +180,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-8.jpg",
-      images: [
-        "/images/sarees/saree-8.jpg",
-      ],
+      images: ["/images/sarees/saree-8.jpg"],
       colors: ["violet", "blue"],
       colorName: "Violet",
       badge: null,
@@ -191,9 +201,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-9.jpg",
-      images: [
-        "/images/sarees/saree-9.jpg",
-      ],
+      images: ["/images/sarees/saree-9.jpg"],
       colors: ["mustard", "pink"],
       colorName: "Mustard with Pink",
       badge: "New",
@@ -214,9 +222,7 @@ export const products = {
       originalPrice: null,
       discount: null,
       image: "/images/sarees/saree-10.jpg",
-      images: [
-        "/images/sarees/saree-10.jpg",
-      ],
+      images: ["/images/sarees/saree-10.jpg"],
       colors: ["orange"],
       colorName: "Orange",
       badge: null,
@@ -239,9 +245,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-1.jpg",
-      images: [
-        "/images/bed-linen/bed-1.jpg",
-      ],
+      images: ["/images/bed-linen/bed-1.jpg"],
       colors: ["beige"],
       colorName: "Beige",
       badge: "Sale",
@@ -249,6 +253,8 @@ export const products = {
       category: "3D Cotton Chadar",
       material: "Fine-spun Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri 3D cotton chadars are renowned for their distinctive textured weave and exceptional breathability. This checked pattern variant measures 53 x 100 inches, offering generous coverage for versatile use. The vibrant beige color hue complements traditional and contemporary settings alike. Crafted from pure cotton, this chadar provides comfort in warm climates while maintaining durability through regular wear and washing. The three-dimensional weave creates visual depth and tactile interest, making it a standout piece in any collection.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "3D-CHD-BEI-001",
@@ -260,9 +266,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-2.jpg",
-      images: [
-        "/images/bed-linen/bed-2.jpg",
-      ],
+      images: ["/images/bed-linen/bed-2.jpg"],
       colors: ["grey"],
       colorName: "Grey",
       badge: "Sale",
@@ -270,6 +274,8 @@ export const products = {
       category: "3D Cotton Chadar",
       material: "Fine-spun Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri 3D cotton chadars are renowned for their distinctive textured weave and exceptional breathability. This checked pattern variant measures 53 x 100 inches, offering generous coverage for versatile use. The elegant grey color complements both modern and traditional settings. Crafted from pure cotton, this chadar provides comfort while maintaining durability through regular wear and washing.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "3D-CHD-GRY-001",
@@ -281,9 +287,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-3.jpg",
-      images: [
-        "/images/bed-linen/bed-3.jpg",
-      ],
+      images: ["/images/bed-linen/bed-3.jpg"],
       colors: ["green"],
       colorName: "Parrot Green",
       badge: "Sale",
@@ -291,6 +295,8 @@ export const products = {
       category: "3D Cotton Chadar",
       material: "Fine-spun Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri 3D cotton chadars are renowned for their distinctive textured weave and exceptional breathability. This checked pattern variant measures 53 x 100 inches. The vibrant parrot green color adds a splash of traditional charm to any setting. Crafted from pure cotton, this chadar provides comfort in warm climates while maintaining durability.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "3D-CHD-PRT-001",
@@ -302,9 +308,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-4.jpg",
-      images: [
-        "/images/bed-linen/bed-4.jpg",
-      ],
+      images: ["/images/bed-linen/bed-4.jpg"],
       colors: ["orange"],
       colorName: "Pastel Orange",
       badge: "Sale",
@@ -312,6 +316,8 @@ export const products = {
       category: "3D Cotton Chadar",
       material: "Fine-spun Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri 3D cotton chadars are renowned for their distinctive textured weave and exceptional breathability. This checked pattern variant measures 53 x 100 inches. The pastel orange hue brings warmth and elegance to your bedroom. Perfect for layering, draping, or everyday use.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "3D-CHD-ORN-001",
@@ -323,9 +329,7 @@ export const products = {
       originalPrice: 1399,
       discount: 57,
       image: "/images/bed-linen/bed-5.jpg",
-      images: [
-        "/images/bed-linen/bed-5.jpg",
-      ],
+      images: ["/images/bed-linen/bed-5.jpg"],
       colors: ["green"],
       colorName: "Parrot Green",
       badge: "Sale",
@@ -333,6 +337,8 @@ export const products = {
       category: "Dull Andi Chadar",
       material: "Double Thread Cotton",
       size: "54 x 100 inch (137 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri Dull Andi Chadar is crafted from fine-spun cotton providing a silky, soft, and breathable texture. This plain double thread variant in parrot green offers a comfortable feel against the skin. Handcrafted by artisans in Bhagalpur (the 'Silk City of India'), featuring the characteristic slight roughness of authentic Handloom/Khadi.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "DULL-AND-PRT-001",
@@ -344,9 +350,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-6.jpg",
-      images: [
-        "/images/bed-linen/bed-6.jpg",
-      ],
+      images: ["/images/bed-linen/bed-6.jpg"],
       colors: ["multi"],
       colorName: "Lemon Yellow",
       badge: "Sale",
@@ -354,6 +358,8 @@ export const products = {
       category: "Designer Cotton Chadar",
       material: "Pure Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri Designer Cotton Chadar features unique patterns crafted by skilled artisans. This premium chadar combines traditional craftsmanship with contemporary design. The lemon yellow hue adds vibrancy to any room. Perfect as a light blanket, bedspread, sofa throw, or meditation mat.",
       washCare: "Machine washable. Wash separately for first few times. Becomes softer with each wash.",
       sku: "DES-COT-LEM-001",
@@ -365,9 +371,7 @@ export const products = {
       originalPrice: 1399,
       discount: 57,
       image: "/images/bed-linen/bed-7.jpg",
-      images: [
-        "/images/bed-linen/bed-7.jpg",
-      ],
+      images: ["/images/bed-linen/bed-7.jpg"],
       colors: ["cream"],
       colorName: "Cream",
       badge: null,
@@ -375,6 +379,8 @@ export const products = {
       category: "Dull Andi Chadar",
       material: "Double Thread Cotton",
       size: "54 x 100 inch (137 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri Dull Andi Chadar is crafted from fine-spun cotton providing a silky, soft, and breathable texture. This plain double thread variant in cream offers a comfortable feel against the skin. Handcrafted by artisans in Bhagalpur (the Silk City of India), featuring the characteristic slight roughness of authentic Handloom/Khadi.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "DULL-AND-CRM-001",
@@ -386,9 +392,7 @@ export const products = {
       originalPrice: 1299,
       discount: 58,
       image: "/images/bed-linen/bed-8.jpg",
-      images: [
-        "/images/bed-linen/bed-8.jpg",
-      ],
+      images: ["/images/bed-linen/bed-8.jpg"],
       colors: ["multi"],
       colorName: "Multi Color",
       badge: "Sale",
@@ -396,6 +400,8 @@ export const products = {
       category: "Medium Check Chadar",
       material: "Cotton",
       size: "52 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri Medium Check Chadar features a classic checkered pattern crafted by skilled artisans. This versatile chadar is perfect for everyday use or special occasions. The multi-color design adds traditional charm to any setting.",
       washCare: "Machine washable. Wash separately for first few times. Becomes softer with each wash.",
       sku: "MED-CHK-MUL-001",
@@ -407,9 +413,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-9.jpg",
-      images: [
-        "/images/bed-linen/bed-9.jpg",
-      ],
+      images: ["/images/bed-linen/bed-9.jpg"],
       colors: ["beige"],
       colorName: "Beige",
       badge: "Sale",
@@ -417,6 +421,8 @@ export const products = {
       category: "3D Cotton Chadar",
       material: "Fine-spun Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri 3D cotton chadars are renowned for their distinctive textured weave and exceptional breathability. This checked pattern variant in beige offers elegant simplicity. Crafted from pure cotton, providing comfort and durability.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "3D-CHD-BEI-002",
@@ -428,9 +434,7 @@ export const products = {
       originalPrice: 1399,
       discount: 60,
       image: "/images/bed-linen/bed-10.jpg",
-      images: [
-        "/images/bed-linen/bed-10.jpg",
-      ],
+      images: ["/images/bed-linen/bed-10.jpg"],
       colors: ["beige"],
       colorName: "Beige",
       badge: "Sale",
@@ -438,6 +442,8 @@ export const products = {
       category: "3D Cotton Chadar",
       material: "Fine-spun Cotton",
       size: "53 x 100 inch (132 x 254 cm)",
+      blousePiece: null,
+      occasion: "Home, Bedding",
       description: "Bhagalpuri 3D cotton chadars are renowned for their distinctive textured weave and exceptional breathability. This premium variant in beige offers timeless elegance. Crafted from pure cotton, providing comfort and durability for all-season use.",
       washCare: "Machine washable. Becomes softer with each wash. Dry in shade for best results.",
       sku: "3D-CHD-BEI-003",
@@ -446,48 +452,27 @@ export const products = {
 };
 
 export const categories = [
-  {
-    name: "Sarees",
-    description: "Silk, Cotton, Georgette & more",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwMCvZKBQGL9oPa_xD3HmfC5WXSt9gnK-WbPuD8ZQiUyhBdJC_j9DY46s55zZRQBjBjok_56A1oTfLIyfkTL5qVxb2hczrhHXyv-Ha_Ri2ybVT4BM6-dvkHb1Mv2QX_Xf0FiAIY3Bow4GMRmqlU5y9GGx2eGiYD6Qqfqspi7wZU6UNMCn2BxsUUV45_Nta4Yp4JNKnSPgE41xYfru0Ra4bFQCs3LMy55se6Ejck2dkUBl17GyaJ4_B8hNh5vzRpI38hohCUXK8TA",
-    href: "/sarees",
-  },
-
-  {
-    name: "Home Linen",
-    description: "Premium Bedspreads & Covers",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAFO6vEHmYHGnDPDGkRVQFsaQgmBj8LMo8TVl5EP3Ms748XdbuSv37EgcOvsQ6-nPGU0xV5f1s_eDpW7D3pbhnA-bjKXg-KyicxzSCGOkusLIBdETx6M22f4UESIB740tSE40Y99od8lR97x2S8B_6gwJH5TuryPfyKxJaChSUYZwKAiVJgy3HW70-uV7HSw2J2VECZ-_s2Rads5ow-xOL2IkQK9P5O7jrGdi53mWnr94BFWwWYRbnvx8RRKADtmdRDQKMP9MgCUQ",
-    href: "/home-linen",
-  },
-];
-
-// Reviews will be added after we start selling
-export const testimonials: never[] = [];
-
-export const productSpecs = {
-  material: "Pure Katan Silk",
-  pattern: "Floral Jangla",
-  border: "Gold Zari",
-  length: "5.5 Meters",
-  blousePiece: "Included (Unstitched)",
-  occasion: "Wedding, Party",
-  origin: "Varanasi, India",
-};
+  { name: "Sarees", description: "Silk, Cotton, Georgette & more", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDwMCvZKBQGL9oPa_xD3HmfC5WXSt9gnK-WbPuD8ZQiUyhBdJC_j9DY46s55zZRQBjBjok_56A1oTfLIyfkTL5qVxb2hczrhHXyv-Ha_Ri2ybVT4BM6-dvkHb1Mv2QX_Xf0FiAIY3Bow4GMRmqlU5y9GGx2eGiYD6Qqfqspi7wZU6UNMCn2BxsUUV45_Nta4Yp4JNKnSPgE41xYfru0Ra4bFQCs3LMy55se6Ejck2dkUBl17GyaJ4_B8hNh5vzRpI38hohCUXK8TA", href: "/sarees" },
+  { name: "Home Linen", description: "Premium Bedspreads & Covers", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAFmYHGnO6vEHDPDGkRVQFsaQgmBj8LMo8TVl5EP3Ms748XdbuSv37EgcOvsQ6-nPGU0xV5f1s_eDpW7D3pbhnA-bjKXg-KyicxzSCGOkusLIBdETx6M22f4UESIB740tSE40Y99od8lR97x2S8B_6gwJH5TuryPfyKxJaChSUYZwKAiVJgy3HW70-uV7HSw2J2VECZ-_s2Rads5ow-xOL2IkQK9P5O7jrGdi53mWnr94BFWwWYRbnvx8RRKADtmdRDQKMP9MgCUQ", href: "/home-linen" },
+] as const;
 
 export const sareeCategories = [
   { id: "all", label: "All Sarees", count: 10 },
   { id: "soft-silk", label: "Soft Silk", count: 3 },
   { id: "art-silk", label: "Art Silk", count: 7 },
-];
+] as const;
+
+export function getProductById(id: string): Product | undefined {
+  return products.sarees.find(p => p.id === id) || products.bedLinen.find(p => p.id === id);
+}
+
+export function getSareeById(id: string): Product | undefined {
+  return products.sarees.find(p => p.id === id);
+}
+
+export function getBedLinenById(id: string): Product | undefined {
+  return products.bedLinen.find(p => p.id === id);
+}
 
 export type SareeProduct = typeof products.sarees[number];
-
 export type BedLinenProduct = typeof products.bedLinen[number];
-
-export function getSareeById(id: string): SareeProduct | undefined {
-  return products.sarees.find((saree) => saree.id === id);
-}
-
-export function getBedLinenById(id: string): BedLinenProduct | undefined {
-  return products.bedLinen.find((product) => product.id === id);
-}

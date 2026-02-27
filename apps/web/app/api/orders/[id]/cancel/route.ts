@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { fetchBackend, getAuthHeaders } from '@/lib/api';
 
-export async function POST(req: NextRequest) {
+interface RouteParams {
+  params: Promise<{ id: string }>;
+}
+
+export async function POST(req: NextRequest, { params }: RouteParams) {
   const { userId, getToken } = await auth();
 
   if (!userId) {
@@ -11,14 +15,13 @@ export async function POST(req: NextRequest) {
 
   const token = await getToken();
 
-  const body = await req.json();
+  const { id } = await params;
 
-  const response = await fetchBackend('/orders/create', {
+  const response = await fetchBackend(`/orders/${id}/cancel`, {
     method: 'POST',
     headers: {
       ...getAuthHeaders(`Bearer ${token}`),
     },
-    body: JSON.stringify(body),
   });
 
   const data = await response.json();

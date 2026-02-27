@@ -12,6 +12,7 @@ adminOrders.get('/', clerkAuth, adminGuard, async (c) => {
   const allOrders = await db
     .select({
       id: orders.id,
+      orderNumber: orders.orderNumber,
       amount: orders.amount,
       currency: orders.currency,
       status: orders.status,
@@ -42,6 +43,7 @@ adminOrders.get('/:id', clerkAuth, adminGuard, async (c) => {
   const order = await db
     .select({
       id: orders.id,
+      orderNumber: orders.orderNumber,
       amount: orders.amount,
       currency: orders.currency,
       status: orders.status,
@@ -107,7 +109,7 @@ adminOrders.patch('/:id', clerkAuth, adminGuard, async (c) => {
     await sendOrderEmail(
       orderUser.email,
       orderUser.name,
-      updatedOrder.id,
+      updatedOrder.orderNumber,
       status
     );
   }

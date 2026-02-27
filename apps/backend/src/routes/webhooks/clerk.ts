@@ -16,7 +16,7 @@ clerkWebhook.post('/clerk', async (c) => {
     return c.json({ error: 'Missing svix headers' }, 400);
   }
 
-  const payload = await c.req.json();
+  const payload = await c.req.text();
 
   const webhook = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
 

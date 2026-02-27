@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ShoppingCart, Heart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 interface ProductCardProps {
   name: string;
@@ -26,8 +27,8 @@ export function ProductCard({
   href,
 }: ProductCardProps) {
   return (
-    <div className="group flex flex-col">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-stone-100 mb-4">
+    <Card className="group overflow-hidden shadow-sm transition-shadow hover:shadow-md">
+      <div className="relative aspect-[3/4] overflow-hidden bg-stone-100">
         <Image
           alt={name}
           src={image}
@@ -71,37 +72,39 @@ export function ProductCard({
           </Button>
         </div>
       </div>
-      <Link href={href} className="flex flex-col gap-1">
-        <h3 className="font-medium text-stone-900 text-lg group-hover:text-primary transition-colors truncate">
-          {name}
-        </h3>
-        <div className="flex items-center gap-2">
-          <span className="font-bold text-stone-900">₹{price.toLocaleString()}</span>
-          {originalPrice && (
-            <>
-              <span className="text-stone-400 text-sm line-through">
-                ₹{originalPrice.toLocaleString()}
-              </span>
-              {discount && (
-                <span className="text-green-600 text-xs font-bold">
-                  {discount}% OFF
+      <CardFooter className="flex flex-col items-start gap-1 p-4">
+        <Link href={href} className="flex flex-col gap-1 w-full">
+          <h3 className="font-medium text-stone-900 text-lg group-hover:text-primary transition-colors truncate">
+            {name}
+          </h3>
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-stone-900">₹{price.toLocaleString()}</span>
+            {originalPrice && (
+              <>
+                <span className="text-stone-400 text-sm line-through">
+                  ₹{originalPrice.toLocaleString()}
                 </span>
-              )}
-            </>
-          )}
-        </div>
-        {colors && colors.length > 0 && (
-          <div className="flex gap-1 mt-1">
-            {colors.slice(0, 4).map((color, i) => (
-              <div
-                key={i}
-                className="w-3 h-3 rounded-full border border-stone-200"
-                style={{ backgroundColor: color }}
-              />
-            ))}
+                {discount && (
+                  <span className="text-green-600 text-xs font-bold">
+                    {discount}% OFF
+                  </span>
+                )}
+              </>
+            )}
           </div>
-        )}
-      </Link>
-    </div>
+          {colors && colors.length > 0 && (
+            <div className="flex gap-1 mt-1">
+              {colors.slice(0, 4).map((color, i) => (
+                <div
+                  key={i}
+                  className="w-3 h-3 rounded-full border border-stone-200"
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+            </div>
+          )}
+        </Link>
+      </CardFooter>
+    </Card>
   );
 }

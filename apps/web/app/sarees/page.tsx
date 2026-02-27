@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { products, sareeCategories } from "@/lib/data";
+import { products, sareeCategories } from "@baby-textiles/schemas";
 import { useState } from "react";
 
 interface SareeProduct {

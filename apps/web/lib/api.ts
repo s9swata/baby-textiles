@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
 
 export async function fetchBackend(
   endpoint: string,
@@ -17,8 +17,11 @@ export async function fetchBackend(
   return response;
 }
 
-export function getAuthHeaders(authToken: string): HeadersInit {
+export function getAuthHeaders(authorization: string): HeadersInit {
+  const authValue = authorization.startsWith('Bearer ') 
+    ? authorization 
+    : `Bearer ${authorization}`;
   return {
-    Authorization: `Bearer ${authToken}`,
+    Authorization: authValue,
   };
 }

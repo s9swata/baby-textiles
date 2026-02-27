@@ -7,6 +7,20 @@ export {
   VALID_PAYMENT_METHODS,
 } from './src/enums';
 
+// Product types
+export {
+  ProductSchema,
+  products,
+  categories,
+  sareeCategories,
+  getProductById,
+  getSareeById,
+  getBedLinenById,
+  type Product,
+  type SareeProduct,
+  type BedLinenProduct,
+} from './src/product';
+
 // Order types
 export {
   OrderItemSchema,

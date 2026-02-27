@@ -7,7 +7,7 @@ import { ArrowRight, ArrowLeft, Truck, BadgeCheck, RotateCcw, ChevronDown } from
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ProductCard } from "@/components/product-card";
-import { products } from "@/lib/data";
+import { products } from "@baby-textiles/schemas";
 
 type SortOption = "featured" | "price-low" | "price-high" | "newest";
 

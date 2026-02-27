@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product-card";
-import { categories, products } from "@/lib/data";
+import { categories, products } from "@baby-textiles/schemas";
 
 export default function Home() {
   return (

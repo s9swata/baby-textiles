@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ClerkWrapper } from "@/components/providers/clerk-wrapper";
+import { CartProvider } from "@/context/CartContext";
+import { Toaster } from "@/components/ui/sonner";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -26,11 +28,14 @@ export default function RootLayout({
     <ClerkWrapper>
       <html lang="en">
         <body className={`${manrope.variable} antialiased`}>
-          <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
+          <CartProvider>
+            <Toaster position="bottom-right" />
+            <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </CartProvider>
         </body>
       </html>
     </ClerkWrapper>
