@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Rethink_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -7,10 +7,10 @@ import { ClerkWrapper } from "@/components/providers/clerk-wrapper";
 import { CartProvider } from "@/context/CartContext";
 import { Toaster } from "@/components/ui/sonner";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const rethinkSans = Rethink_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <ClerkWrapper>
       <html lang="en">
-        <body className={`${manrope.variable} antialiased`}>
+        <body className={`${rethinkSans.variable} antialiased`}>
           <CartProvider>
             <Toaster position="bottom-right" />
             <div className="flex min-h-screen w-full flex-col overflow-x-hidden">

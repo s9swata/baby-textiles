@@ -66,7 +66,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
       <div className="w-full max-w-7xl mx-auto px-4 md:px-10 pb-12 flex items-center justify-center min-h-[50vh]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-stone-500">Loading product...</p>
+          <p className="text-muted-foreground">Loading product...</p>
         </div>
       </div>
     );
@@ -76,8 +76,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     return (
       <div className="w-full max-w-7xl mx-auto px-4 md:px-10 pb-12">
         <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
-          <h2 className="text-2xl font-bold text-stone-900">Product Not Found</h2>
-          <p className="text-stone-500">The product you're looking for doesn't exist.</p>
+          <h2 className="text-2xl font-bold text-foreground">Product Not Found</h2>
+          <p className="text-muted-foreground">The product you're looking for doesn't exist.</p>
           <Link href="/sarees">
             <Button>Browse Sarees</Button>
           </Link>
@@ -100,15 +100,15 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     <div className="w-full max-w-7xl mx-auto px-4 md:px-10 pb-12">
       {/* Breadcrumbs */}
       <div className="flex flex-wrap gap-2 text-sm md:text-base py-4">
-        <Link href="/" className="text-stone-500 hover:text-primary font-medium">
+        <Link href="/" className="text-muted-foreground hover:text-primary font-medium">
           Home
         </Link>
-        <span className="text-stone-500 font-medium">/</span>
-        <Link href="/sarees" className="text-stone-500 hover:text-primary font-medium">
+        <span className="text-muted-foreground font-medium">/</span>
+        <Link href="/sarees" className="text-muted-foreground hover:text-primary font-medium">
           Sarees
         </Link>
-        <span className="text-stone-500 font-medium">/</span>
-        <span className="text-stone-900 font-bold">{currentProduct.name}</span>
+        <span className="text-muted-foreground font-medium">/</span>
+        <span className="text-foreground font-bold">{currentProduct.name}</span>
       </div>
 
       {/* Main Product Section */}
@@ -116,7 +116,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         {/* Left Column: Images */}
         <div className="flex flex-col gap-4">
           {/* Main Image */}
-          <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-stone-200 relative group cursor-zoom-in">
+          <div className="aspect-[4/5] w-full overflow-hidden rounded-xl bg-secondary relative group cursor-zoom-in">
             <Image
               alt={currentProduct.name}
               src={productImages[selectedImage]}
@@ -128,7 +128,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm hover:bg-white"
+              className="absolute top-4 right-4 bg-card/80 backdrop-blur-sm hover:bg-card"
             >
               <Heart className="h-5 w-5" />
             </Button>
@@ -143,7 +143,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 className={`aspect-square rounded-lg overflow-hidden border-2 ${
                   selectedImage === i
                     ? "border-primary ring-2 ring-primary/20"
-                    : "border-stone-200 hover:border-primary"
+                    : "border-border hover:border-primary"
                 }`}
               >
                 <Image
@@ -168,11 +168,11 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   {currentProduct.badge}
                 </Badge>
               )}
-              <span className="text-stone-500 text-xs font-medium uppercase tracking-wider">
+              <span className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                 SKU: {currentProduct.sku}
               </span>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-stone-900 leading-tight mb-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight mb-2">
               {currentProduct.name}
             </h1>
             <div className="flex items-center gap-4">
@@ -183,7 +183,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 <Star className="fill-current h-5 w-5" />
                 <Star className="fill-current h-4 w-4" />
               </div>
-              <span className="text-sm text-stone-500 font-medium hover:text-primary cursor-pointer underline underline-offset-2">
+              <span className="text-sm text-muted-foreground font-medium hover:text-primary cursor-pointer underline underline-offset-2">
                 124 Reviews
               </span>
             </div>
@@ -191,10 +191,10 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
           {/* Pricing */}
           <div className="flex items-end gap-3 pb-6 border-b border-b-stone-200">
-            <span className="text-4xl font-bold text-stone-900">₹{currentProduct.price.toLocaleString()}</span>
+            <span className="text-4xl font-bold text-foreground">₹{currentProduct.price.toLocaleString()}</span>
             {currentProduct.originalPrice != null && (
               <>
-                <span className="text-xl text-stone-500 line-through mb-1.5">₹{(currentProduct.originalPrice as number).toLocaleString()}</span>
+                <span className="text-xl text-muted-foreground line-through mb-1.5">₹{(currentProduct.originalPrice as number).toLocaleString()}</span>
                 {discount != null && (
                   <span className="text-primary font-bold mb-1.5 ml-1">{discount}% OFF</span>
                 )}
@@ -204,23 +204,23 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
           {/* Description */}
           <div className="space-y-4">
-            <p className="text-stone-700 leading-relaxed">
+            <p className="text-muted-foreground/90 leading-relaxed">
               {currentProduct.description}
             </p>
             <ul className="space-y-2">
-              <li className="flex items-center gap-3 text-sm text-stone-700">
+              <li className="flex items-center gap-3 text-sm text-muted-foreground/90">
                 <CheckCircle className="h-4 w-4 text-primary" />
                 <span>100% {currentProduct.material}</span>
               </li>
-              <li className="flex items-center gap-3 text-sm text-stone-700">
+              <li className="flex items-center gap-3 text-sm text-muted-foreground/90">
                 <CheckCircle className="h-4 w-4 text-primary" />
                 <span>Size: {currentProduct.size}</span>
               </li>
-              <li className="flex items-center gap-3 text-sm text-stone-700">
+              <li className="flex items-center gap-3 text-sm text-muted-foreground/90">
                 <CheckCircle className="h-4 w-4 text-primary" />
                 <span>{currentProduct.blousePiece}</span>
               </li>
-              <li className="flex items-center gap-3 text-sm text-stone-700">
+              <li className="flex items-center gap-3 text-sm text-muted-foreground/90">
                 <CheckCircle className="h-4 w-4 text-primary" />
                 <span>Color: {currentProduct.colorName}</span>
               </li>
@@ -230,7 +230,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
           {/* Blouse Stitching Selector */}
           <div className="space-y-4 pt-4">
             <div className="flex justify-between items-center">
-              <span className="font-bold text-stone-900">Blouse Stitching</span>
+              <span className="font-bold text-foreground">Blouse Stitching</span>
               <Link href="#" className="text-primary text-sm font-medium hover:underline">
                 Size Guide
               </Link>
@@ -244,7 +244,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   name="blouse"
                   className="peer sr-only"
                 />
-                <div className="rounded-lg border border-stone-300 px-4 py-3 text-center text-sm font-medium hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all">
+                <div className="rounded-lg border border-border px-4 py-3 text-center text-sm font-medium hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all">
                   Unstitched
                 </div>
               </label>
@@ -256,7 +256,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   name="blouse"
                   className="peer sr-only"
                 />
-                <div className="rounded-lg border border-stone-300 px-4 py-3 text-center text-sm font-medium hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all">
+                <div className="rounded-lg border border-border px-4 py-3 text-center text-sm font-medium hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all">
                   Stitched (+₹899)
                 </div>
               </label>
@@ -265,7 +265,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
           {/* Actions */}
           <div className="flex flex-col sm:flex-row gap-4 pt-6">
-            <div className="flex items-center border border-stone-300 rounded-lg w-max">
+            <div className="flex items-center border border-border rounded-lg w-max">
               <Button
                 variant="ghost"
                 size="icon"
@@ -312,55 +312,55 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
           </div>
 
           {/* Delivery & Trust */}
-          <div className="grid grid-cols-3 gap-4 pt-6 mt-6 border-t border-stone-200">
+          <div className="grid grid-cols-3 gap-4 pt-6 mt-6 border-t border-border">
             <div className="flex flex-col items-center text-center gap-2">
-              <div className="size-10 rounded-full bg-stone-100 flex items-center justify-center text-primary">
+              <div className="size-10 rounded-full bg-muted flex items-center justify-center text-primary">
                 <Truck className="h-5 w-5" />
               </div>
-              <span className="text-xs font-medium text-stone-600">Free Shipping</span>
+              <span className="text-xs font-medium text-muted-foreground">Free Shipping</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
-              <div className="size-10 rounded-full bg-stone-100 flex items-center justify-center text-primary">
+              <div className="size-10 rounded-full bg-muted flex items-center justify-center text-primary">
                 <ShieldCheck className="h-5 w-5" />
               </div>
-              <span className="text-xs font-medium text-stone-600">Silk Mark Certified</span>
+              <span className="text-xs font-medium text-muted-foreground">Silk Mark Certified</span>
             </div>
             <div className="flex flex-col items-center text-center gap-2">
-              <div className="size-10 rounded-full bg-stone-100 flex items-center justify-center text-primary">
+              <div className="size-10 rounded-full bg-muted flex items-center justify-center text-primary">
                 <RotateCcw className="h-5 w-5" />
               </div>
-              <span className="text-xs font-medium text-stone-600">7 Day Returns</span>
+              <span className="text-xs font-medium text-muted-foreground">7 Day Returns</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Product Care & Details Section */}
-      <div className="bg-white py-16 mt-12 max-w-7xl mx-auto px-4 md:px-10">
+      <div className="bg-card py-16 mt-12 max-w-7xl mx-auto px-4 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Product Care */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-stone-900 mb-4">Product Care</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-4">Product Care</h3>
               <div className="grid grid-cols-1 gap-4">
                 {product.washCare ? (
-                  <div className="flex items-start gap-3 p-4 bg-stone-50 rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-background rounded-lg">
                     <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
                     <div>
                       <p className="font-bold text-sm mb-1">Wash Care Instructions</p>
-                      <p className="text-xs text-stone-500">{product.washCare}</p>
+                      <p className="text-xs text-muted-foreground">{product.washCare}</p>
                     </div>
                   </div>
                 ) : (
                   careInstructions.map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-start gap-3 p-4 bg-stone-50 rounded-lg"
+                      className="flex items-start gap-3 p-4 bg-background rounded-lg"
                     >
                       <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
                       <div>
                         <p className="font-bold text-sm mb-1">{item.title}</p>
-                        <p className="text-xs text-stone-500">{item.description}</p>
+                        <p className="text-xs text-muted-foreground">{item.description}</p>
                       </div>
                     </div>
                   ))
@@ -370,8 +370,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
             {/* Weave Details */}
             <div>
-              <h3 className="text-2xl font-bold text-stone-900 mb-4">Product Details</h3>
-              <p className="text-stone-600 mb-4 leading-relaxed">
+              <h3 className="text-2xl font-bold text-foreground mb-4">Product Details</h3>
+              <p className="text-muted-foreground mb-4 leading-relaxed">
                 {product.material} saree perfect for {product.occasion?.toLowerCase() || "casual and formal occasions"}. 
                 This exquisite piece is crafted with attention to detail and quality, ensuring you look elegant for any event.
               </p>
@@ -380,31 +380,31 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
           {/* Specifications Table */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold text-stone-900 mb-4">Specifications</h3>
-            <div className="divide-y divide-stone-200 border-y border-stone-200">
+            <h3 className="text-2xl font-bold text-foreground mb-4">Specifications</h3>
+            <div className="divide-y divide-border border-y border-border">
               <div className="flex justify-between py-3">
-                <span className="text-stone-500 font-medium">Material</span>
-                <span className="text-stone-900 font-semibold text-right">{product.material}</span>
+                <span className="text-muted-foreground font-medium">Material</span>
+                <span className="text-foreground font-semibold text-right">{product.material}</span>
               </div>
               <div className="flex justify-between py-3">
-                <span className="text-stone-500 font-medium">Color</span>
-                <span className="text-stone-900 font-semibold text-right">{product.colorName}</span>
+                <span className="text-muted-foreground font-medium">Color</span>
+                <span className="text-foreground font-semibold text-right">{product.colorName}</span>
               </div>
               <div className="flex justify-between py-3">
-                <span className="text-stone-500 font-medium">Size</span>
-                <span className="text-stone-900 font-semibold text-right">{product.size}</span>
+                <span className="text-muted-foreground font-medium">Size</span>
+                <span className="text-foreground font-semibold text-right">{product.size}</span>
               </div>
               <div className="flex justify-between py-3">
-                <span className="text-stone-500 font-medium">Blouse Piece</span>
-                <span className="text-stone-900 font-semibold text-right">{product.blousePiece}</span>
+                <span className="text-muted-foreground font-medium">Blouse Piece</span>
+                <span className="text-foreground font-semibold text-right">{product.blousePiece}</span>
               </div>
               <div className="flex justify-between py-3">
-                <span className="text-stone-500 font-medium">Occasion</span>
-                <span className="text-stone-900 font-semibold text-right">{product.occasion}</span>
+                <span className="text-muted-foreground font-medium">Occasion</span>
+                <span className="text-foreground font-semibold text-right">{product.occasion}</span>
               </div>
               <div className="flex justify-between py-3">
-                <span className="text-stone-500 font-medium">SKU</span>
-                <span className="text-stone-900 font-semibold text-right">{currentProduct.sku}</span>
+                <span className="text-muted-foreground font-medium">SKU</span>
+                <span className="text-foreground font-semibold text-right">{currentProduct.sku}</span>
               </div>
             </div>
           </div>

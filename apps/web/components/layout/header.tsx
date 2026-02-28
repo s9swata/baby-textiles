@@ -30,7 +30,7 @@ export function Header() {
 
         <div className="hidden md:block w-80">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80" />
             <Input
               placeholder="Search sarees..."
               className="pl-10 bg-neutral-light border-none"
@@ -69,7 +69,7 @@ export function Header() {
           <Button variant="ghost" size="icon" className="relative" asChild={false}>
             <ShoppingCart className="h-5 w-5" />
             {itemCount > 0 && (
-              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-white flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
                 {itemCount > 9 ? "9+" : itemCount}
               </span>
             )}

@@ -85,32 +85,32 @@ export default function SareesPage() {
     <div className="w-full max-w-[1440px] mx-auto px-4 md:px-10 py-8">
       {/* Breadcrumbs */}
       <div className="flex flex-wrap gap-2 mb-6 text-sm">
-        <Link href="/" className="text-stone-500 hover:text-primary transition-colors">
+        <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
           Home
         </Link>
-        <span className="text-stone-300">/</span>
-        <Link href="/sarees" className="text-stone-500 hover:text-primary transition-colors">
+        <span className="text-muted-foreground/50">/</span>
+        <Link href="/sarees" className="text-muted-foreground hover:text-primary transition-colors">
           Collections
         </Link>
-        <span className="text-stone-300">/</span>
-        <span className="text-stone-900 font-medium">Sarees</span>
+        <span className="text-muted-foreground/50">/</span>
+        <span className="text-foreground font-medium">Sarees</span>
       </div>
 
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-stone-900 mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             Elegant Saree Collection
           </h1>
-          <p className="text-stone-500">Discover handpicked traditional and contemporary drapes.</p>
+          <p className="text-muted-foreground">Discover handpicked traditional and contemporary drapes.</p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-stone-500 hidden md:block">Sort by:</span>
+          <span className="text-sm font-medium text-muted-foreground hidden md:block">Sort by:</span>
           <div className="relative">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as SortOption)}
-              className="appearance-none bg-white border border-stone-300 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-stone-700 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+              className="appearance-none bg-card border border-border rounded-lg px-4 py-2 pr-10 text-sm font-medium text-muted-foreground/90 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -118,7 +118,7 @@ export default function SareesPage() {
                 </option>
               ))}
             </select>
-            <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400 pointer-events-none rotate-90" />
+            <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80 pointer-events-none rotate-90" />
           </div>
         </div>
       </div>
@@ -137,7 +137,7 @@ export default function SareesPage() {
           <div className={`space-y-8 ${mobileFiltersOpen ? 'block' : 'hidden lg:block'}`}>
             {/* Category Filter */}
             <div>
-              <h3 className="font-bold text-stone-900 mb-4 flex items-center justify-between">
+              <h3 className="font-bold text-foreground mb-4 flex items-center justify-between">
                 Category
               </h3>
               <div className="space-y-3">
@@ -147,10 +147,10 @@ export default function SareesPage() {
                       checked={selectedCategory === cat.id}
                       onCheckedChange={() => setSelectedCategory(cat.id)}
                     />
-                    <span className="text-stone-600 group-hover:text-primary transition-colors">
+                    <span className="text-muted-foreground group-hover:text-primary transition-colors">
                       {cat.label}
                     </span>
-                    <span className="ml-auto text-xs text-stone-400">({getCategoryCount(cat.id)})</span>
+                    <span className="ml-auto text-xs text-muted-foreground/80">({getCategoryCount(cat.id)})</span>
                   </label>
                 ))}
               </div>
@@ -160,14 +160,14 @@ export default function SareesPage() {
 
             {/* Price Filter */}
             <div>
-              <h3 className="font-bold text-stone-900 mb-4 flex items-center justify-between">
+              <h3 className="font-bold text-foreground mb-4 flex items-center justify-between">
                 Price Range
               </h3>
               <div className="space-y-3">
                 {priceRanges.map((range) => (
                   <label key={range.id} className="flex items-center gap-3 cursor-pointer group">
                     <Checkbox />
-                    <span className="text-stone-600 group-hover:text-primary transition-colors">
+                    <span className="text-muted-foreground group-hover:text-primary transition-colors">
                       {range.label}
                     </span>
                   </label>
@@ -179,7 +179,7 @@ export default function SareesPage() {
 
             {/* Color Filter */}
             <div>
-              <h3 className="font-bold text-stone-900 mb-4 flex items-center justify-between">
+              <h3 className="font-bold text-foreground mb-4 flex items-center justify-between">
                 Color
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -187,7 +187,7 @@ export default function SareesPage() {
                   <button
                     key={color.id}
                     aria-label={color.id}
-                    className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-transparent hover:ring-stone-300 focus:ring-stone-400 transition-all border border-stone-200"
+                    className="w-8 h-8 rounded-full ring-2 ring-offset-2 ring-transparent hover:ring-border focus:ring-ring transition-all border border-border"
                     style={{ backgroundColor: color.color }}
                   />
                 ))}
@@ -206,7 +206,7 @@ export default function SareesPage() {
                 <X className="h-3 w-3" onClick={() => setSelectedCategory("all")} />
               </Badge>
               <button 
-                className="text-sm text-stone-500 hover:text-primary underline ml-2"
+                className="text-sm text-muted-foreground hover:text-primary underline ml-2"
                 onClick={() => setSelectedCategory("all")}
               >
                 Clear all
@@ -218,7 +218,7 @@ export default function SareesPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
             {sortedAndFilteredProducts.map((product: SareeProduct) => (
               <div key={product.id} className="group flex flex-col">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-stone-100 mb-4">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-muted mb-4">
                   <Image
                     alt={product.name}
                     src={product.image}
@@ -245,7 +245,7 @@ export default function SareesPage() {
                     <Link href={product.href} className="flex-1">
                       <Button
                         size="lg"
-                        className="w-full bg-white hover:bg-stone-50 text-stone-900 shadow-lg gap-2 h-14 text-base"
+                        className="w-full bg-card hover:bg-background text-foreground shadow-lg gap-2 h-14 text-base"
                       >
                         <ShoppingCart className="w-5 h-5" />
                         Add to Cart
@@ -254,21 +254,21 @@ export default function SareesPage() {
                     <Button
                       size="icon"
                       variant="white"
-                      className="bg-white hover:bg-stone-50 text-stone-900 shadow-lg h-14 w-14"
+                      className="bg-card hover:bg-background text-foreground shadow-lg h-14 w-14"
                     >
                       <Heart className="w-5 h-5" />
                     </Button>
                   </div>
                 </div>
                 <Link href={product.href} className="flex flex-col gap-1">
-                  <h3 className="font-medium text-stone-900 text-lg group-hover:text-primary transition-colors truncate">
+                  <h3 className="font-medium text-foreground text-lg group-hover:text-primary transition-colors truncate">
                     {product.name}
                   </h3>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-stone-900">₹{product.price.toLocaleString("en-IN")}</span>
+                    <span className="font-bold text-foreground">₹{product.price.toLocaleString("en-IN")}</span>
                     {product.originalPrice && (
                       <>
-                        <span className="text-stone-400 text-sm line-through">
+                        <span className="text-muted-foreground/80 text-sm line-through">
                           ₹{product.originalPrice.toLocaleString("en-IN")}
                         </span>
                         {product.discount && (
@@ -284,7 +284,7 @@ export default function SareesPage() {
                       {product.colors.slice(0, 4).map((color, i) => (
                         <div
                           key={i}
-                          className="w-3 h-3 rounded-full border border-stone-200"
+                          className="w-3 h-3 rounded-full border border-border"
                           style={{ backgroundColor: color }}
                         />
                       ))}
@@ -298,7 +298,7 @@ export default function SareesPage() {
           {/* Empty State */}
           {filteredProducts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-stone-500">No products found in this category.</p>
+              <p className="text-muted-foreground">No products found in this category.</p>
               <Button 
                 variant="outline" 
                 className="mt-4"

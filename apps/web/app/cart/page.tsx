@@ -14,9 +14,9 @@ export default function CartPage() {
   if (items.length === 0) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center px-4">
-        <ShoppingBag className="h-16 w-16 text-stone-300" />
-        <h2 className="mt-4 text-2xl font-bold text-stone-900">Your cart is empty</h2>
-        <p className="mt-2 text-stone-500">Looks like you haven't added anything to your cart yet.</p>
+        <ShoppingBag className="h-16 w-16 text-muted-foreground/50" />
+        <h2 className="mt-4 text-2xl font-bold text-foreground">Your cart is empty</h2>
+        <p className="mt-2 text-muted-foreground">Looks like you haven't added anything to your cart yet.</p>
         <Link href="/sarees">
           <Button className="mt-6">Continue Shopping</Button>
         </Link>
@@ -26,7 +26,7 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
-      <h1 className="text-2xl font-bold text-stone-900">Shopping Cart ({items.length})</h1>
+      <h1 className="text-2xl font-bold text-foreground">Shopping Cart ({items.length})</h1>
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
@@ -34,7 +34,7 @@ export default function CartPage() {
             {items.map((item) => (
               <Card key={item.productId} className="border-0 p-4">
                 <div className="flex gap-4">
-                  <div className="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-md bg-stone-100">
+                  <div className="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-md bg-muted">
                     <Image
                       src={item.image}
                       alt={item.name}
@@ -44,8 +44,8 @@ export default function CartPage() {
                   </div>
                   <div className="flex flex-1 flex-col justify-between">
                     <div>
-                      <h3 className="font-medium text-stone-900">{item.name}</h3>
-                      <p className="mt-1 text-sm text-stone-500">SKU: {item.sku}</p>
+                      <h3 className="font-medium text-foreground">{item.name}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">SKU: {item.sku}</p>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -70,7 +70,7 @@ export default function CartPage() {
                           <Plus className="h-4 w-4" />
                         </Button>
                       </div>
-                      <p className="font-semibold text-stone-900">
+                      <p className="font-semibold text-foreground">
                         ₹{(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
@@ -78,7 +78,7 @@ export default function CartPage() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-stone-400 hover:text-red-500"
+                    className="h-8 w-8 text-muted-foreground/80 hover:text-red-500"
                     onClick={() => removeFromCart(item.productId)}
                     aria-label={`Remove ${item.name} from cart`}
                   >
@@ -97,16 +97,16 @@ export default function CartPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <div className="flex justify-between text-stone-600">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Subtotal ({items.length} items)</span>
                   <span>₹{total.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-stone-600">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Shipping</span>
                   <span className="text-green-600">Free</span>
                 </div>
                 <div className="border-t pt-3">
-                  <div className="flex justify-between font-bold text-stone-900">
+                  <div className="flex justify-between font-bold text-foreground">
                     <span>Total</span>
                     <span>₹{total.toLocaleString()}</span>
                   </div>

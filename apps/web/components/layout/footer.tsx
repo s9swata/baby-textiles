@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-4 lg:px-12">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Diamond className="h-5 w-5" />
             </div>
             <span className="text-lg font-bold">Baby Textiles</span>
@@ -101,7 +101,7 @@ export function Footer() {
           <div className="flex gap-2">
             <Input
               placeholder="Email address"
-              className="bg-white border-none"
+              className="bg-card border-none"
             />
             <Button size="icon">
               <Mail className="h-4 w-4" />
@@ -110,7 +110,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mt-12 border-t border-gray-200 pt-8 text-center text-xs text-text-sub">
+      <div className="mt-12 border-t border-border pt-8 text-center text-xs text-text-sub">
         <p>&copy; 2026 Baby Textiles. All rights reserved.</p>
       </div>
     </footer>

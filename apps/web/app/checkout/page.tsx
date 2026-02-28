@@ -174,8 +174,8 @@ function CheckoutContent() {
   if (cartItems.length === 0 && step === 1) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center px-4">
-        <h2 className="text-2xl font-bold text-stone-900">Your cart is empty</h2>
-        <p className="mt-2 text-stone-500">Add some items to your cart to checkout.</p>
+        <h2 className="text-2xl font-bold text-foreground">Your cart is empty</h2>
+        <p className="mt-2 text-muted-foreground">Add some items to your cart to checkout.</p>
         <Link href="/sarees">
           <Button className="mt-6">Continue Shopping</Button>
         </Link>
@@ -186,13 +186,13 @@ function CheckoutContent() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
       <div className="mb-6">
-        <Link href="/cart" className="flex items-center gap-2 text-stone-600 hover:text-stone-900">
+        <Link href="/cart" className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" />
           Back to Cart
         </Link>
       </div>
 
-      <h1 className="text-2xl font-bold text-stone-900">Checkout</h1>
+      <h1 className="text-2xl font-bold text-foreground">Checkout</h1>
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
@@ -301,7 +301,7 @@ function CheckoutContent() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    <label className="flex cursor-pointer items-center justify-between rounded-lg bg-stone-50 p-4 hover:bg-stone-100">
+                    <label className="flex cursor-pointer items-center justify-between rounded-lg bg-background p-4 hover:bg-muted">
                       <div className="flex items-center gap-3">
                         <input
                           type="radio"
@@ -311,11 +311,11 @@ function CheckoutContent() {
                           onChange={() => setPaymentMethod("online")}
                           className="h-4 w-4 text-primary"
                         />
-                        <CreditCard className="h-5 w-5 text-stone-400" />
-                        <span className="font-medium text-stone-900">Online Payment</span>
+                        <CreditCard className="h-5 w-5 text-muted-foreground/80" />
+                        <span className="font-medium text-foreground">Online Payment</span>
                       </div>
                     </label>
-                    <label className="flex cursor-pointer items-center justify-between rounded-lg bg-stone-50 p-4 hover:bg-stone-100">
+                    <label className="flex cursor-pointer items-center justify-between rounded-lg bg-background p-4 hover:bg-muted">
                       <div className="flex items-center gap-3">
                         <input
                           type="radio"
@@ -325,8 +325,8 @@ function CheckoutContent() {
                           onChange={() => setPaymentMethod("cod")}
                           className="h-4 w-4 text-primary"
                         />
-                        <Wallet className="h-5 w-5 text-stone-400" />
-                        <span className="font-medium text-stone-900">Cash on Delivery</span>
+                        <Wallet className="h-5 w-5 text-muted-foreground/80" />
+                        <span className="font-medium text-foreground">Cash on Delivery</span>
                       </div>
                     </label>
                   </div>
@@ -345,15 +345,15 @@ function CheckoutContent() {
                   <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
                     <CheckCircle className="h-8 w-8 text-green-600" />
                   </div>
-                  <p className="text-lg font-medium text-stone-900">Order Created Successfully!</p>
-                  <p className="mt-2 text-stone-500">
+                  <p className="text-lg font-medium text-foreground">Order Created Successfully!</p>
+                  <p className="mt-2 text-muted-foreground">
                     Please confirm your payment to complete the order.
                   </p>
-                  <div className="mt-6 rounded-lg bg-stone-50 p-4">
-                    <p className="text-sm text-stone-600">
+                  <div className="mt-6 rounded-lg bg-background p-4">
+                    <p className="text-sm text-muted-foreground">
                       This is a <span className="font-medium text-amber-600">mock payment</span> for testing.
                     </p>
-                    <p className="text-sm text-stone-500 mt-1">
+                    <p className="text-sm text-muted-foreground mt-1">
                       Click "Confirm Payment" to simulate a successful payment.
                     </p>
                   </div>
@@ -387,7 +387,7 @@ function CheckoutContent() {
               <div className="space-y-4">
                 {cartItems.map((item) => (
                   <div key={item.productId} className="flex gap-3">
-                    <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md bg-stone-100">
+                    <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md bg-muted">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -396,9 +396,9 @@ function CheckoutContent() {
                       />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-stone-900 line-clamp-1">{item.name}</p>
-                      <p className="text-sm text-stone-500">Qty: {item.quantity}</p>
-                      <p className="text-sm font-medium text-stone-900">
+                      <p className="text-sm font-medium text-foreground line-clamp-1">{item.name}</p>
+                      <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
+                      <p className="text-sm font-medium text-foreground">
                         ₹{(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
@@ -406,15 +406,15 @@ function CheckoutContent() {
                 ))}
               </div>
               <div className="mt-4 border-t pt-4 space-y-2">
-                <div className="flex justify-between text-stone-600">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Subtotal</span>
                   <span>₹{total.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between text-stone-600">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Shipping</span>
                   <span className="text-green-600">Free</span>
                 </div>
-                <div className="flex justify-between font-bold text-stone-900 pt-2 border-t">
+                <div className="flex justify-between font-bold text-foreground pt-2 border-t">
                   <span>Total</span>
                   <span>₹{total.toLocaleString()}</span>
                 </div>

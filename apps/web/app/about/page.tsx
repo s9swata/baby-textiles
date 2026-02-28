@@ -111,7 +111,7 @@ export default function AboutPage() {
           Our Core Values
         </h2>
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl bg-white p-6 shadow-sm">
+          <div className="rounded-xl bg-card p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-bold text-text-main">
               Authenticity
             </h3>
@@ -120,7 +120,7 @@ export default function AboutPage() {
               using traditional techniques passed down through generations.
             </p>
           </div>
-          <div className="rounded-xl bg-white p-6 shadow-sm">
+          <div className="rounded-xl bg-card p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-bold text-text-main">
               Sustainability
             </h3>
@@ -129,7 +129,7 @@ export default function AboutPage() {
               supporting handloom weavers and preserving traditional crafts.
             </p>
           </div>
-          <div className="rounded-xl bg-white p-6 shadow-sm">
+          <div className="rounded-xl bg-card p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-bold text-text-main">
               Quality
             </h3>
@@ -141,7 +141,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-primary p-8 text-center text-white md:p-12">
+      <div className="rounded-2xl bg-primary p-8 text-center text-primary-foreground md:p-12">
         <h2 className="mb-4 text-2xl font-bold">
           Experience the Beauty of Handloom
         </h2>
@@ -152,13 +152,13 @@ export default function AboutPage() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/sarees"
-            className="rounded-full bg-white px-8 py-3 font-semibold text-primary transition hover:bg-gray-100"
+            className="rounded-full bg-card px-8 py-3 font-semibold text-primary transition hover:bg-accent"
           >
             Shop Sarees
           </Link>
           <Link
             href="/home-linen"
-            className="rounded-full border-2 border-white px-8 py-3 font-semibold text-white transition hover:bg-white/10"
+            className="rounded-full border-2 border-primary-foreground px-8 py-3 font-semibold text-primary-foreground transition hover:bg-card/10"
           >
             Shop Bed Linen
           </Link>

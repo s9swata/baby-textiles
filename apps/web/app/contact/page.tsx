@@ -99,7 +99,7 @@ export default function ContactPage() {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-primary-foreground"
               >
                 <svg
                   className="h-5 w-5"
@@ -111,7 +111,7 @@ export default function ContactPage() {
               </a>
               <a
                 href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-primary-foreground"
               >
                 <svg
                   className="h-5 w-5"
@@ -123,7 +123,7 @@ export default function ContactPage() {
               </a>
               <a
                 href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-primary-foreground"
               >
                 <svg
                   className="h-5 w-5"
@@ -135,7 +135,7 @@ export default function ContactPage() {
               </a>
               <a
                 href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition hover:bg-primary hover:text-primary-foreground"
               >
                 <MessageCircle className="h-5 w-5" />
               </a>
@@ -143,7 +143,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-white p-8 shadow-lg">
+        <div className="rounded-2xl bg-card p-8 shadow-lg">
           <h2 className="mb-6 text-xl font-bold text-text-main">
             Send Us a Message
           </h2>
@@ -236,7 +236,7 @@ export default function ContactPage() {
               <select
                 id="subject"
                 name="subject"
-                className="flex h-10 w-full items-center justify-between rounded-md border-0 bg-stone-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full items-center justify-between rounded-md border-0 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 required
               >
                 <option value="">Select a topic</option>
@@ -261,7 +261,7 @@ export default function ContactPage() {
                 id="message"
                 name="message"
                 placeholder="How can we help you?"
-                className="min-h-[120px] w-full rounded-md border-0 bg-stone-50 px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                className="min-h-[120px] w-full rounded-md border-0 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                 required
               />
             </div>

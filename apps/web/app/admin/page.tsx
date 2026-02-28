@@ -80,15 +80,15 @@ export default function AdminDashboard() {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-2xl font-bold text-stone-900">Order Management</h1>
-        <p className="text-stone-500">{orders.length} orders</p>
+        <h1 className="text-2xl font-bold text-foreground">Order Management</h1>
+        <p className="text-muted-foreground">{orders.length} orders</p>
       </div>
 
       {orders.length === 0 ? (
         <Card className="p-12 text-center">
           <CardContent className="pt-6">
-            <Package className="h-12 w-12 text-stone-300 mx-auto mb-4" />
-            <p className="text-stone-500">No orders yet</p>
+            <Package className="h-12 w-12 text-muted-foreground/50 mx-auto mb-4" />
+            <p className="text-muted-foreground">No orders yet</p>
           </CardContent>
         </Card>
       ) : (
@@ -113,30 +113,30 @@ export default function AdminDashboard() {
                 {orders.map((order) => (
                   <TableRow key={order.id}>
                     <TableCell>
-                      <span className="font-mono text-sm text-stone-600">
+                      <span className="font-mono text-sm text-muted-foreground">
                         {order.orderNumber}
                       </span>
                     </TableCell>
                     <TableCell>
-                      <p className="text-sm font-medium text-stone-900">
+                      <p className="text-sm font-medium text-foreground">
                         {order.user?.name || "N/A"}
                       </p>
-                      <p className="text-sm text-stone-500">{order.user?.email}</p>
+                      <p className="text-sm text-muted-foreground">{order.user?.email}</p>
                     </TableCell>
-                    <TableCell className="text-sm font-medium text-stone-900">
+                    <TableCell className="text-sm font-medium text-foreground">
                       ₹{(order.amount / 100).toLocaleString()}
                     </TableCell>
                     <TableCell>
-                      <span className="text-sm text-stone-600 uppercase">
+                      <span className="text-sm text-muted-foreground uppercase">
                         {order.paymentMethod}
                       </span>
                     </TableCell>
                     <TableCell>
-                      <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[order.status] || "bg-gray-100 text-gray-800"}`}>
+                      <span className={`inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColors[order.status] || "bg-muted text-foreground"}`}>
                         {order.status}
                       </span>
                     </TableCell>
-                    <TableCell className="text-sm text-stone-500">
+                    <TableCell className="text-sm text-muted-foreground">
                       {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "N/A"}
                     </TableCell>
                     <TableCell>

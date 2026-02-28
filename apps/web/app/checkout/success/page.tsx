@@ -17,16 +17,16 @@ function SuccessContent() {
           <CheckCircle className="h-10 w-10 text-green-600" />
         </div>
         
-        <h1 className="text-3xl font-bold text-stone-900">Order Placed Successfully!</h1>
+        <h1 className="text-3xl font-bold text-foreground">Order Placed Successfully!</h1>
         
-        <p className="mt-3 text-lg text-stone-600">
+        <p className="mt-3 text-lg text-muted-foreground">
           Thank you for your order. We've received your request and will process it shortly.
         </p>
         
         {orderNumber && (
-          <div className="mt-6 inline-block rounded-lg bg-stone-50 px-6 py-3">
-            <p className="text-sm text-stone-500">Order Number</p>
-            <p className="font-mono font-medium text-stone-900">
+          <div className="mt-6 inline-block rounded-lg bg-background px-6 py-3">
+            <p className="text-sm text-muted-foreground">Order Number</p>
+            <p className="font-mono font-medium text-foreground">
               {orderNumber}
             </p>
           </div>
@@ -41,7 +41,7 @@ function SuccessContent() {
           </Link>
         </div>
         
-        <div className="mt-12 flex items-center justify-center gap-8 text-stone-500">
+        <div className="mt-12 flex items-center justify-center gap-8 text-muted-foreground">
           <div className="flex flex-col items-center gap-2">
             <Package className="h-6 w-6" />
             <span className="text-sm">Free Shipping</span>

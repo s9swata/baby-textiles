@@ -28,7 +28,7 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <Card className="group overflow-hidden shadow-sm transition-shadow hover:shadow-md">
-      <div className="relative aspect-[3/4] overflow-hidden bg-stone-100">
+      <div className="relative aspect-[3/4] overflow-hidden bg-muted">
         <Image
           alt={name}
           src={image}
@@ -58,7 +58,7 @@ export function ProductCard({
         <div className="absolute bottom-4 left-0 right-0 px-4 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300 flex gap-2">
           <Button
             size="lg"
-            className="flex-1 bg-white hover:bg-stone-50 text-stone-900 shadow-lg h-14 text-base"
+            className="flex-1 bg-card hover:bg-background text-foreground shadow-lg h-14 text-base"
           >
             <ShoppingCart className="w-5 h-5" />
             Add to Cart
@@ -66,7 +66,7 @@ export function ProductCard({
           <Button
             size="icon"
             variant="white"
-            className="bg-white hover:bg-stone-50 text-stone-900 shadow-lg h-14 w-14"
+            className="bg-card hover:bg-background text-foreground shadow-lg h-14 w-14"
           >
             <Heart className="w-5 h-5" />
           </Button>
@@ -74,14 +74,14 @@ export function ProductCard({
       </div>
       <CardFooter className="flex flex-col items-start gap-1 p-4">
         <Link href={href} className="flex flex-col gap-1 w-full">
-          <h3 className="font-medium text-stone-900 text-lg group-hover:text-primary transition-colors truncate">
+          <h3 className="font-medium text-foreground text-lg group-hover:text-primary transition-colors truncate">
             {name}
           </h3>
           <div className="flex items-center gap-2">
-            <span className="font-bold text-stone-900">₹{price.toLocaleString()}</span>
+            <span className="font-bold text-foreground">₹{price.toLocaleString()}</span>
             {originalPrice && (
               <>
-                <span className="text-stone-400 text-sm line-through">
+                <span className="text-muted-foreground/80 text-sm line-through">
                   ₹{originalPrice.toLocaleString()}
                 </span>
                 {discount && (
@@ -97,7 +97,7 @@ export function ProductCard({
               {colors.slice(0, 4).map((color, i) => (
                 <div
                   key={i}
-                  className="w-3 h-3 rounded-full border border-stone-200"
+                  className="w-3 h-3 rounded-full border border-border"
                   style={{ backgroundColor: color }}
                 />
               ))}

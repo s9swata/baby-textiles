@@ -23,15 +23,14 @@ export default function Home() {
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           <div className="relative z-10 flex min-h-[500px] flex-col justify-center px-6 py-12 md:px-12 lg:w-3/5">
-            <span className="mb-4 inline-block w-fit rounded-full bg-primary/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white backdrop-blur-sm">
+            <span className="mb-4 inline-block w-fit rounded-full bg-primary/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary-foreground backdrop-blur-sm">
               Premium Collection 2026
             </span>
-            <h2 className="mb-4 text-4xl font-black leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h2 className="mb-4 text-4xl font-black leading-tight tracking-tight text-primary-foreground md:text-5xl lg:text-6xl">
               Timeless Elegance in Every Thread
             </h2>
-            <p className="mb-8 text-lg font-medium text-gray-200              Explore our hand md:text-xl">
-              crafted collection of premium Kanjivaram silk sarees woven with
-              heritage.
+            <p className="mb-8 text-lg font-medium text-primary-foreground/90 md:text-xl">
+              Explore our handcrafted collection of premium Kanjivaram silk sarees woven with heritage.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/sarees">
@@ -89,14 +88,14 @@ export default function Home() {
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
               <div className="absolute bottom-0 left-0 p-6">
-                <h3 className="text-xl font-bold text-white">
+                <h3 className="text-xl font-bold text-primary-foreground">
                   {category.name}
                 </h3>
-                <p className="mt-1 text-sm text-gray-200 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+                <p className="mt-1 text-sm text-muted-foreground/40 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
                   {category.description}
                 </p>
               </div>
-              <div className="absolute top-4 right-4 rounded-full bg-white/20 p-2 text-white backdrop-blur-md transition-transform group-hover:rotate-45">
+              <div className="absolute top-4 right-4 rounded-full bg-card/20 p-2 text-primary-foreground backdrop-blur-md transition-transform group-hover:rotate-45">
                 <ArrowRight className="h-4 w-4" />
               </div>
             </Link>
@@ -128,14 +127,14 @@ export default function Home() {
                   Years Legacy
                 </span>
               </div>
-              <div className="h-10 w-px bg-gray-300" />
+              <div className="h-10 w-px bg-border" />
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-black text-primary">10k+</span>
                 <span className="text-sm font-medium text-text-sub">
                   Happy Customers
                 </span>
               </div>
-              <div className="h-10 w-px bg-gray-300" />
+              <div className="h-10 w-px bg-border" />
               <div className="flex flex-col gap-1">
                 <span className="text-3xl font-black text-primary">100%</span>
                 <span className="text-sm font-medium text-text-sub">

@@ -39,11 +39,11 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-background">
       <div className="flex">
-        <aside className="w-64 bg-white border-r border-stone-200 min-h-screen">
+        <aside className="w-64 bg-card border-r border-border min-h-screen">
           <div className="p-6">
-            <h2 className="text-xl font-bold text-stone-900">Admin</h2>
+            <h2 className="text-xl font-bold text-foreground">Admin</h2>
           </div>
           <nav className="px-4">
             {adminNavItems.map((item) => {
@@ -57,8 +57,8 @@ export default function AdminLayout({
                   href={item.href}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg mb-1 ${
                     isActive
-                      ? "bg-primary text-white"
-                      : "text-stone-600 hover:bg-stone-100"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   <Icon className="h-5 w-5" />

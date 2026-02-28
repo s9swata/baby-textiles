@@ -38,11 +38,11 @@ export default function HomeLinenPage() {
     <div className="w-full max-w-[1440px] mx-auto px-4 md:px-10 py-6 flex flex-col gap-8">
       {/* Breadcrumbs */}
       <div className="flex flex-wrap items-center gap-2 text-sm">
-        <Link href="/" className="text-stone-500 hover:text-primary transition-colors">
+        <Link href="/" className="text-muted-foreground hover:text-primary transition-colors">
           Home
         </Link>
-        <ChevronRightIcon className="h-4 w-4 text-stone-400" />
-        <Link href="/home-linen" className="text-stone-500 hover:text-primary transition-colors">
+        <ChevronRightIcon className="h-4 w-4 text-muted-foreground/80" />
+        <Link href="/home-linen" className="text-muted-foreground hover:text-primary transition-colors">
           Home Linen
         </Link>
       </div>
@@ -62,10 +62,10 @@ export default function HomeLinenPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         <div className="relative z-10 p-8 md:p-16 max-w-2xl flex flex-col gap-6">
           <Badge variant="new" className="w-fit">New Collection</Badge>
-          <h1 className="text-white text-4xl md:text-6xl font-black leading-tight tracking-tight">
+          <h1 className="text-primary-foreground text-4xl md:text-6xl font-black leading-tight tracking-tight">
             Experience the Comfort of Pure Cotton
           </h1>
-          <p className="text-gray-100 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+          <p className="text-primary-foreground/90 text-lg md:text-xl font-light leading-relaxed max-w-lg">
             Handwoven luxury for your bedroom sanctuary. Our breathable, 400-thread
             count sheets get softer with every wash.
           </p>
@@ -81,16 +81,16 @@ export default function HomeLinenPage() {
       </div>
 
       {/* Featured Products */}
-      <div id="products" className="py-12 border-t border-stone-200">
+      <div id="products" className="py-12 border-t border-border">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-stone-900 text-2xl font-bold">Our Products</h2>
+          <h2 className="text-foreground text-2xl font-bold">Our Products</h2>
           <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-stone-500 hidden md:block">Sort by:</span>
+            <span className="text-sm font-medium text-muted-foreground hidden md:block">Sort by:</span>
             <div className="relative">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="appearance-none bg-white border border-stone-300 rounded-lg px-4 py-2 pr-10 text-sm font-medium text-stone-700 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
+                className="appearance-none bg-card border border-border rounded-lg px-4 py-2 pr-10 text-sm font-medium text-muted-foreground/90 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 cursor-pointer"
               >
                 {sortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -98,7 +98,7 @@ export default function HomeLinenPage() {
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/80 pointer-events-none" />
             </div>
           </div>
         </div>
@@ -121,12 +121,12 @@ export default function HomeLinenPage() {
       </div>
 
       {/* Trust Section */}
-      <div className="my-8 rounded-2xl bg-stone-100 p-8 md:p-12 text-center">
+      <div className="my-8 rounded-2xl bg-muted p-8 md:p-12 text-center">
         <div className="max-w-3xl mx-auto flex flex-col gap-6 items-center">
           <span className="text-primary font-bold tracking-wider uppercase text-sm">
             Why Choose TextileCo?
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Crafted for the perfect sleep
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mt-6">
@@ -135,7 +135,7 @@ export default function HomeLinenPage() {
                 <Truck className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-lg">Free Shipping</h3>
-              <p className="text-sm text-stone-500">
+              <p className="text-sm text-muted-foreground">
                 On all orders above ₹999 across India
               </p>
             </div>
@@ -144,7 +144,7 @@ export default function HomeLinenPage() {
                 <BadgeCheck className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-lg">100% Authentic Cotton</h3>
-              <p className="text-sm text-stone-500">
+              <p className="text-sm text-muted-foreground">
                 Sourced directly from weavers
               </p>
             </div>
@@ -153,7 +153,7 @@ export default function HomeLinenPage() {
                 <RotateCcw className="h-6 w-6" />
               </div>
               <h3 className="font-bold text-lg">Easy Returns</h3>
-              <p className="text-sm text-stone-500">
+              <p className="text-sm text-muted-foreground">
                 30-day hassle-free return policy
               </p>
             </div>
